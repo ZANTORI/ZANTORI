@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zantori · Nuestra Historia</title>
+
+<style>
+  :root{
+    --bg: #f5f2ee;
+    --card: #ffffff;
+    --muted: #8b857b;
+    --accent: #1f1a17;
+    --glass: rgba(31,26,23,0.06);
+    --radius: 12px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background: linear-gradient(180deg,var(--bg),#efeae3);
+    color:var(--accent);
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    line-height:1.6;
+  }
+  .container{max-width:900px;margin:36px auto;padding:0 20px}
+
+  /* Header */
+  header{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
+  .controls a{
+    display: inline-block;
+    padding: 6px 12px;
+    background-color: #edf1f3;
+    color: #000;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+    border: 1px solid #000;
+  }
+
+  /* Historia */
+  h2{text-align:center;margin-bottom:24px;font-size:28px}
+  h3{margin-bottom:12px;font-size:20px;color:var(--accent);}
+  article p{margin-bottom:18px;line-height:1.7;color:#333;}
+
+  /* Preloader */
+  #preloader {
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    flex-direction: column;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+  }
+  #preloader.hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .spinner-circle {
+    width: 100px;
+    height: 100px;
+    border: 6px solid #f3f3f3;
+    border-top: 6px solid var(--accent);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+  .spinner-circle img {
+    width: 60px; /* tamaño del logo dentro del círculo */
+    height: 60px;
+    border-radius: 50%;
+  }
+  @keyframes spin {
+    0% { transform: rotate(0deg);}
+    100% { transform: rotate(360deg);}
+  }
+
+  footer{margin-top:36px;padding:24px 0;color:var(--muted);text-align:center;font-size:14px}
+
+  @media (max-width:600px){
+    h2{font-size:24px;}
+    h3{font-size:18px;}
+  }
+</style>
+</head>
+<body>
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="spinner-circle">
+      <img src="WhatsApp Image 2025-09-28 at 3.04.34 AM (1).png" alt="Logo Zantori">
+    </div>
+  </div>
+
+  <div class="container">
+    <header>
+      <a href="index.html"><img src="WhatsApp Image 2025-09-28 at 3.04.34 AM (1).png" alt="Volver al inicio" style="width:80px;"></a>
+      <div class="controls">
+        <a href="index.html">Inicio</a>
+        <a href="historia.html">Historia</a>
+      </div>
+    </header>
+
+    <main>
+      <h2>Nuestra Historia</h2>
+      <article>
+        <h3>Los comienzos</h3>
+        <p>
+          Zantori no es solo una marca de ropa: es el resultado de mucho esfuerzo, disciplina y pasión por el diseño.
+          Nació con la idea de crear prendas que no solo se vistan, sino que expresen identidad, fuerza y carácter.
+        </p>
+        <p>
+          Cada colección surge de noches de trabajo, pruebas, errores y aprendizajes. Desde elegir las telas correctas hasta diseñar cada detalle gráfico, el camino ha estado lleno de retos, pero también de una motivación constante: ofrecer moda con propósito y autenticidad.
+        </p>
+        <p>
+          En Zantori creemos que la ropa es una extensión de quien la lleva. Por eso trabajamos con dedicación para que cada prenda refleje nuestra filosofía: poder, misticismo y estilo urbano.
+        </p>
+        <p>
+          Hoy, más que un emprendimiento, Zantori es un proyecto de vida que sigue creciendo gracias al apoyo de quienes se identifican con nuestra visión. Cada compra es más que una transacción: es la confirmación de que los sueños construidos con esfuerzo pueden volverse realidad.
+        </p>
+
+        <h3>El crecimiento y la innovación</h3>
+        <p>
+          Aunque Zantori apenas comienza, nuestra meta es innovar en cada colección desde el primer día. La inspiración proviene de la cultura urbana, el arte callejero, la música y la energía de la ciudad. Cada diseño nace del deseo de que quienes elijan nuestras prendas se sientan únicos y auténticos.
+        </p>
+        <p>
+          Estamos explorando nuevas técnicas de estampado, materiales de calidad y cortes modernos que se adapten a la vida cotidiana. Queremos que cada prenda sea cómoda, resistente y, sobre todo, un reflejo del estilo propio de cada persona.
+        </p>
+
+        <h3>La comunidad Zantori</h3>
+        <p>
+          Desde el inicio, buscamos crear un espacio para quienes comparten nuestra visión. Cada cliente será parte de nuestra historia y nos motivará a seguir creando. Nos encanta imaginar cómo nuestras piezas se combinan y cómo la gente llevará su estilo a nuevas alturas.
+        </p>
+        <p>
+          Queremos que la comunidad Zantori sea diversa, creativa y apasionada. Por eso, nuestras colecciones iniciales están pensadas para adaptarse a diferentes gustos, edades y personalidades, manteniendo siempre la esencia urbana y auténtica que nos caracteriza.
+        </p>
+
+        <h3>Hoy y el futuro</h3>
+        <p>
+          Zantori comienza su viaje con ilusión y compromiso con la calidad, el diseño y la autenticidad. Cada prenda representa un paso hacia adelante y un símbolo de identidad y estilo.
+        </p>
+        <p>
+          Miramos hacia el futuro con ambición: crecer, explorar nuevas tendencias y conectar con nuestra comunidad. Para nosotros, la moda no es solo ropa, es una manera de contar historias y de inspirar a otros a expresar su verdadero yo.
+        </p>
+      </article>
+          </main>
+    <!-- Redes sociales -->
+<section style="text-align:center; margin:40px 0;">
+  <h3 style="margin-bottom:16px; color:var(--accent); font-size:20px;">Síguenos en nuestras redes</h3>
+  <div style="display:flex; justify-content:center; gap:24px; align-items:center;">
+
+    <!-- WhatsApp -->
+    <a href="https://api.whatsapp.com/send/?phone=%2B573159259531&text&type=phone_number&app_absent=0" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Zantori" style="width:30px; height:30px; border-radius:50%; transition:transform 0.3s;">
+    </a>
+
+    <!-- Instagram -->
+    <a href="https://www.instagram.com/__zantori__" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Instagram_logo_2022.svg" alt="Instagram Zantori" style="width:20px; height:20px; border-radius:50%; transition:transform 0.3s;">
+    </a>
+
+    <!-- TikTok -->
+    <a href="https://www.tiktok.com/@__zantori__" target="_blank">
+      <img src="https://img.freepik.com/premium-vector/tik-tok-glitch-icon-social-media-tik-tok-icon-vinnitsa-ukraine-february-22-02-2023_250246-536.jpg?semt=ais_hybrid&w=740&q=80" alt="TikTok Zantori" style="width:30px; height:30px; border-radius:50%; transition:transform 0.3s;">
+    </a>
+
+  </div>
+</section>
+
+<style>
+  section a:hover img {
+    transform: scale(1.1);
+  }
+</style>
+
+
+    <footer>
+      © <span id="year"></span> ZANTORI · Minimal luxury streetwear · Hecho con Amor y Pasión ❤
+    </footer>
+  </div>
+
+  <script>
+    // Preloader
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('preloader').classList.add('hidden');
+      }, 1500); // Cambia el tiempo aquí en ms
+      document.getElementById('year').textContent = new Date().getFullYear();
+    });
+  </script>
+</body>
+</html>

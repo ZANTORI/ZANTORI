@@ -6,6 +6,57 @@
   <title>ZANTORI — Minimal Luxury Oversize</title>
   <meta name="description" content="ZANTORI - Minimal luxury oversize clothing shop" />
   <style>
+    /* Preloader */
+#preloader {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  flex-direction: column;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+#preloader.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.spinner-circle {
+  width: 100px;
+  height: 100px;
+  border: 6px solid #8b857b;
+  border-top: 6px solid var(--accent);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+.spinner-circle img {
+  width: 80px; 
+  height: 80px;
+  border-radius: 50%;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg);}
+  100% { transform: rotate(360deg);}
+}
+
+  .boton {
+    display: inline-block;
+    padding: 6px;
+    background-color: #edf1f300; /* color azul botón */
+    color: #000000;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: arial;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #000000;
+}
     :root{
       --bg: #f5f2ee;
       --card: #ffffff;
@@ -34,7 +85,24 @@
     .cart-count{position:absolute;top:-8px;right:-8px;background:var(--accent);color:#fff;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:12px}
 
     .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:22px;margin-top:28px}
-    .card{background:var(--card);border-radius:var(--radius);padding:12px;border:1px solid var(--glass);box-shadow:0 6px 20px rgba(31,26,23,0.04);display:flex;flex-direction:column;gap:10px}
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 16px;
+  border: 1px solid var(--glass);
+  box-shadow: 0 8px 24px rgba(31, 26, 23, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  backdrop-filter: blur(var(--blur));
+  -webkit-backdrop-filter: blur(var(--blur)); /* Para Safari */
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: 0 12px 32px rgba(31, 26, 23, 0.08);
+  transform: translateY(-2px);
+}
     .thumb{height:300px;border-radius:10px;background:#f6f3f0;display:flex;align-items:center;justify-content:center;overflow:hidden}
     .thumb img{width:100%;height:100%;object-fit:cover}
     .title{font-weight:700;font-size:16px}
@@ -44,9 +112,60 @@
     .btn{padding:8px 12px;border-radius:8px;border:1px solid var(--accent);background:transparent;cursor:pointer}
     .primary{background:var(--accent);color:#fff;border-color:var(--accent)}
 
-    .drawer{position:fixed;right:0;top:0;height:100%;width:380px;background:var(--card);box-shadow:-20px 0 40px rgba(31,26,23,0.08);transform:translateX(110%);transition:transform .28s ease;z-index:80;padding:20px;overflow:auto}
-    .drawer.open{transform:translateX(0)}
-    .drawer h3{margin-bottom:12px}
+.drawer {
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 380px;
+  background: rgba(255, 255, 255, 0.15); /* traslúcido */
+  backdrop-filter: blur(20px); /* efecto glass */
+  -webkit-backdrop-filter: blur(20px); /* Safari */
+  box-shadow: -20px 0 60px rgba(31, 26, 23, 0.15); /* sombra suave */
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  transform: translateX(110%);
+  transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55), box-shadow 0.3s ease; /* animación con efecto “elastic” */
+  z-index: 80;
+  padding: 24px;
+  overflow-y: auto;
+  opacity: 0; /* para animación de aparición */
+}
+
+.drawer.open {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* Título del drawer */
+.drawer h3 {
+  margin-bottom: 20px;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--accent);
+  text-align: left;
+}
+
+/* Scroll personalizado */
+.drawer::-webkit-scrollbar {
+  width: 8px;
+}
+
+.drawer::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+
+.drawer::-webkit-scrollbar-thumb {
+  background: rgba(31, 26, 23, 0.3);
+  border-radius: 4px;
+}
+
+.drawer::-webkit-scrollbar-thumb:hover {
+  background: rgba(31, 26, 23, 0.5);
+}
+
     .cart-item{display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px dashed #eee}
     .thumb-sm{width:72px;height:72px;border-radius:8px;background:#faf7f5;display:flex;align-items:center;justify-content:center;overflow:hidden}
     .thumb-sm img{width:100%;height:100%;object-fit:cover}
@@ -56,7 +175,88 @@
 
     .overlay{position:fixed;inset:0;background:rgba(0,0,0,0.48);display:none;align-items:center;justify-content:center;z-index:120;padding:16px}
     .overlay.open{display:flex}
-    .modal{background:var(--card);border-radius:14px;max-width:980px;width:100%;padding:18px;box-shadow:0 14px 40px rgba(0,0,0,0.12);display:grid;grid-template-columns:1fr 1fr;gap:18px}
+:root {
+  --card: #ffffff; /* Puedes cambiar a #f9f9f9 si prefieres un fondo menos blanco */
+}
+
+/* Modal container */
+.modal {
+  background: var(--card);
+  border-radius: 16px;
+  max-width: 880px;
+  width: 100%;
+  padding: 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  font-family: 'Segoe UI', sans-serif;
+  animation: fadeInModal 0.4s ease-out;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Fade-in animation */
+@keyframes fadeInModal {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Inputs dentro del modal */
+.modal input {
+  padding: 12px 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.modal input:focus {
+  border-color: #8b857b;
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+  outline: none;
+}
+
+/* Botones */
+.modal button {
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+  border: none;
+}
+
+.modal .primary {
+  background-color: #8b857b;
+  color: white;
+}
+
+.modal .btn:not(.primary) {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+.modal button:hover {
+  opacity: 0.9;
+}
+
+/* Responsive: 1 columna en pantallas pequeñas */
+@media (max-width: 600px) {
+  .modal {
+    grid-template-columns: 1fr;
+    padding: 20px;
+    gap: 16px;
+  }
+}
     .gallery-main{height:420px;border-radius:12px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#faf7f5}
     .gallery-main img{width:100%;height:100%;object-fit:cover}
     .gallery-thumbs{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
@@ -72,15 +272,25 @@
   </style>
 </head>
 <body>
+    <!-- Preloader -->
+<div id="preloader">
+  <div class="spinner-circle">
+    <img src="WhatsApp Image 2025-09-28 at 3.04.34 AM (1).png" alt="Logo Zantori">
+  </div>
+</div>
+
   <div class="container">
     <header>
       <div>
-        <div class="brand">ZANTORI</div>
-        <div class="tag">Minimal luxury oversize</div>
+        <a href="index.html">
+    <img src="WhatsApp Image 2025-09-28 at 3.04.34 AM (1).png" alt="Volver al inicio" style="width:80px;">
+       </a>
       </div>
       <div class="controls">
+         <a href="index.html" class="boton">Inicio</a>
+         <a href="historia.html" class="boton">Historia</a>
+        <button class="cart-btn" id="openCart"> 🛒 <span class="cart-count" id="cartCount">0</span></button>
         <input class="search" id="search" placeholder="Buscar: camisetas, hoodies..." />
-        <button class="cart-btn" id="openCart">Carrito <span class="cart-count" id="cartCount">0</span></button>
       </div>
     </header>
 
@@ -91,24 +301,66 @@
         <h3>No hay productos que coincidan</h3>
       </section>
     </main>
+    <!-- Redes sociales -->
+<section style="text-align:center; margin:40px 0;">
+  <h3 style="margin-bottom:16px; color:var(--accent); font-size:20px;">Síguenos en nuestras redes</h3>
+  <div style="display:flex; justify-content:center; gap:24px; align-items:center;">
+
+    <!-- WhatsApp -->
+    <a href="https://api.whatsapp.com/send/?phone=%2B573159259531&text&type=phone_number&app_absent=0" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Zantori" style="width:30px; height:30px; border-radius:50%; transition:transform 0.3s;">
+    </a>
+
+    <!-- Instagram -->
+    <a href="https://www.instagram.com/__zantori__" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Instagram_logo_2022.svg" alt="Instagram Zantori" style="width:20px; height:20px; border-radius:50%; transition:transform 0.3s;">
+    </a>
+
+    <!-- TikTok -->
+    <a href="https://www.tiktok.com/@__zantori__" target="_blank">
+      <img src="https://img.freepik.com/premium-vector/tik-tok-glitch-icon-social-media-tik-tok-icon-vinnitsa-ukraine-february-22-02-2023_250246-536.jpg?semt=ais_hybrid&w=740&q=80" alt="TikTok Zantori" style="width:30px; height:30px; border-radius:50%; transition:transform 0.3s;">
+    </a>
+
+  </div>
+</section>
+
+<style>
+  section a:hover img {
+    transform: scale(1.1);
+  }
+</style>
+
 
     <footer>
-      © <span id="year"></span> ZANTORI · Minimal luxury streetwear · Hecho con ❤
+      © <span id="year"></span> ZANTORI · Minimal luxury streetwear · Hecho con Amor y Pasión ❤
     </footer>
   </div>
 
   <!-- Cart drawer -->
-  <aside class="drawer" id="drawer">
-    <h3>Tu carrito</h3>
-    <div id="cartList"></div>
-    <div id="cartSummary" style="margin-top:12px">
-      <div class="small">Subtotal: <strong id="subtotal">$0</strong></div>
-      <div class="small">Envío: <strong id="shipping">$0</strong></div>
-      <div style="margin-top:8px;font-weight:700">Total: <span id="total">$0</span></div>
-      <div id="checkoutBtn" class="checkout">Pagar</div>
-      <div style="font-size:13px;color:var(--muted);margin-top:8px">Se guardará tu pedido y se abrirá WhatsApp para confirmar.</div>
+ <aside class="drawer" id="drawer">
+  <!-- Botón de cerrar -->
+  <button id="closeDrawer" style="
+    position:absolute; top:12px; right:12px;
+    background: rgba(255,255,255,0.2); border:none;
+    padding:6px 10px; border-radius:8px; cursor:pointer;
+    font-weight:bold; font-size:18px;
+    color: var(--accent);
+    backdrop-filter: blur(5px);
+  ">✕</button>
+
+  <h3>Tu carrito</h3>
+  <div id="cartList"></div>
+  <div id="cartSummary" style="margin-top:12px">
+    <div class="small">Subtotal: <strong id="subtotal">$0</strong></div>
+    <div class="small">Envío: <strong id="shipping">$0</strong></div>
+    <div style="margin-top:8px;font-weight:700">Total: <span id="total">$0</span></div>
+    <div id="checkoutBtn" class="checkout">Pagar</div>
+    <div style="font-size:13px;color:var(--muted);margin-top:8px">
+      Se guardará tu pedido y se abrirá WhatsApp para confirmar.
     </div>
-  </aside>
+  </div>
+</aside>
+
 
   <!-- Product modal -->
   <div class="overlay" id="overlay">
@@ -147,8 +399,8 @@
   <div class="overlay" id="overlayCheckout">
     <div class="modal" role="dialog" aria-modal="true">
       <div style="grid-column:1/-1">
-        <h3>Confirmar pedido</h3>
-        <div class="small">Ingresa tus datos para enviar el pedido.</div>
+        <h3>Confirmar pedido 🛍️</h3>
+        <div class="small">Ingresa tus datos para enviar el pedido📦.</div>
       </div>
 
       <div style="grid-column:1/-1;margin-top:10px;display:flex;flex-direction:column;gap:8px">
@@ -171,26 +423,49 @@
 
     /* --------------- PRODUCTOS --------------- */
     const PRODUCTS = [
-      {
+       {
         id:'p01',
         title:'Might Collection Tee',
         sku:'MC-BL-01',
         price:60000,
         desc:'Camiseta oversize premium, algodón 200g, corte relajado y acabado mate.',
         variants:{
-          'Blanca':{label:'Blanca',images:[
-            'https://i.imgur.com/H8sPpVZ.jpeg',
-            'https://i.imgur.com/3Kq1o1L.jpeg'
-          ]},
-          'Negra':{label:'Negra',images:[
-            'https://i.imgur.com/OrAxYvV.jpeg',
-            'https://i.imgur.com/d4G3a9F.jpeg'
-          ]},
-          'Gris':{label:'Gris',images:[
-            'https://i.imgur.com/rPwFZab.jpeg'
-          ]}
+          'Blanca':{label:'Blanca',images:['reborn logo.png', 'Reborn doblada.png','Reborn adelante.png', 'Reborn atras.png', 'Reborn colgada.png', 'Reborn etiqueta.png', 'Reborn persona 1.png', 'Reborn persona 2.png', 'Reborn pareja.png']},
         },
-        sizes:['S','M','L','XL']
+        sizes:['S','M','L']
+      },
+      {
+        id:'p06',
+        title:'Might Collection Tee',
+        sku:'MC-BL-01',
+        price:60000,
+        desc:'Camiseta oversize premium, algodón 200g, corte relajado y acabado mate.',
+        variants:{
+          'Blanca':{label:'Blanca',images:['reborn logo.png', 'Reborn doblada.png','Reborn adelante.png', 'Reborn atras.png', 'Reborn colgada.png', 'Reborn etiqueta.png', 'Reborn persona 1.png', 'Reborn persona 2.png', 'Reborn pareja.png']},
+        },
+        sizes:['S','M','L']
+      },
+      {
+        id:'p05',
+        title:'Might Collection Tee',
+        sku:'MC-BL-01',
+        price:60000,
+        desc:'Camiseta oversize premium, algodón 200g, corte relajado y acabado mate.',
+        variants:{
+          'Blanca':{label:'Blanca',images:['reborn logo.png', 'Reborn doblada.png','Reborn adelante.png', 'Reborn atras.png', 'Reborn colgada.png', 'Reborn etiqueta.png', 'Reborn persona 1.png', 'Reborn persona 2.png', 'Reborn pareja.png']},
+        },
+        sizes:['S','M','L']
+      },
+      {
+        id:'p04',
+        title:'Might Collection Tee',
+        sku:'MC-BL-01',
+        price:60000,
+        desc:'Camiseta oversize premium, algodón 200g, corte relajado y acabado mate.',
+        variants:{
+          'Blanca':{label:'Blanca',images:['reborn logo.png', 'Reborn doblada.png','Reborn adelante.png', 'Reborn atras.png', 'Reborn colgada.png', 'Reborn etiqueta.png', 'Reborn persona 1.png', 'Reborn persona 2.png', 'Reborn pareja.png']},
+        },
+        sizes:['S','M','L']
       },
       {
         id:'p02',
@@ -225,25 +500,51 @@
           ]}
         },
         sizes:['S','M','L']
-      },
-      {
-        id:'p04',
-        title:'White Flow Long Tee',
-        sku:'WF-TS-03',
-        price:58000,
-        desc:'Long tee oversize con caída fluida, ideal para layering.',
-        variants:{
-          'Blanca':{label:'Blanca',images:[
-            'https://i.imgur.com/rPwFZab.jpeg',
-            'https://i.imgur.com/3Kq1o1L.jpeg'
-          ]},
-          'Gris':{label:'Gris',images:[
-            'https://i.imgur.com/0oX7s6k.jpeg'
-          ]}
-        },
-        sizes:['S','M','L']
       }
     ];
+    /* ------------- Drawer animado ------------- */
+document.addEventListener('DOMContentLoaded', function() {
+  const drawer = $('drawer');
+  const openCartBtn = $('openCart');
+
+  // Crear botón de cerrar si no existe
+  let closeBtn = drawer.querySelector('#closeDrawer');
+  if(!closeBtn){
+    closeBtn = document.createElement('button');
+    closeBtn.id = 'closeDrawer';
+    closeBtn.textContent = '✕';
+    closeBtn.style.cssText = `
+      position:absolute;
+      top:12px;
+      right:12px;
+      background:none;
+      border:none;
+      font-size:20px;
+      cursor:pointer;
+    `;
+    drawer.appendChild(closeBtn);
+  }
+
+  // Abrir drawer
+  openCartBtn.addEventListener('click', () => drawer.classList.add('open'));
+
+  // Cerrar drawer con botón
+  closeBtn.addEventListener('click', () => drawer.classList.remove('open'));
+
+  // Cerrar drawer al hacer clic fuera
+  document.addEventListener('click', (e) => {
+    if(drawer.classList.contains('open') && !drawer.contains(e.target) && e.target !== openCartBtn){
+      drawer.classList.remove('open');
+    }
+  });
+
+  // Cerrar drawer con ESC
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape' && drawer.classList.contains('open')){
+      drawer.classList.remove('open');
+    }
+  });
+});
 
     /* ------------- Utilities ------------- */
     const $ = id => document.getElementById(id);
@@ -252,6 +553,8 @@
     /* ------------- Catalog render ------------- */
     const catalogEl = $('catalog');
     const emptyState = $('emptyState');
+
+    
 
     function renderCatalog(list){
       catalogEl.innerHTML = '';
@@ -292,7 +595,6 @@
       cart[key] = (cart[key]||0) + 1;
       saveCart(); showToast('Añadido al carrito');
     }
-
     function addToCartVariant(productId, color, size, qty=1){
       const key = `${productId}::${color}::${size}`;
       cart[key] = (cart[key]||0) + qty;
@@ -309,35 +611,111 @@
         return { key, pid, title:p.title, sku:p.sku, color, size, qty:cart[key], price:p.price, line:p.price*cart[key], img:p.variants[color]?.images?.[0]||'' };
       });
     }
+    
 
-    function renderCart(){
-      const list = $('cartList'); list.innerHTML='';
-      const items = cartItems();
-      if(!items.length){ list.innerHTML = '<div style="padding:20px;color:var(--muted)">Tu carrito está vacío.</div>'; $('subtotal').textContent='$0'; $('shipping').textContent='$0'; $('total').textContent='$0'; return; }
-      let subtotal = 0;
-      items.forEach(it=>{
-        subtotal += it.line;
-        const row = document.createElement('div'); row.className='cart-item';
-        const th = document.createElement('div'); th.className='thumb-sm';
-        if(it.img){ const im = document.createElement('img'); im.src = it.img; th.appendChild(im); } else { th.textContent = it.title; }
-        const info = document.createElement('div'); info.style.flex='1';
-        const t = document.createElement('div'); t.textContent = it.title; t.style.fontWeight='600';
-        const s = document.createElement('div'); s.className='small'; s.textContent = `${it.color} • Talla ${it.size} • ${formatCOP(it.price)} c/u`;
-        const qty = document.createElement('div'); qty.className='qty';
-        const minus = document.createElement('button'); minus.textContent='-'; minus.onclick = ()=> changeQty(it.key, it.qty-1);
-        const qText = document.createElement('div'); qText.textContent = it.qty; qText.style.minWidth='22px'; qText.style.textAlign='center';
-        const plus = document.createElement('button'); plus.textContent='+'; plus.onclick = ()=> changeQty(it.key, it.qty+1);
-        qty.appendChild(minus); qty.appendChild(qText); qty.appendChild(plus);
-        const remove = document.createElement('button'); remove.textContent='Eliminar'; remove.style.marginLeft='8px'; remove.onclick = ()=> removeFromCart(it.key);
-        info.appendChild(t); info.appendChild(s); info.appendChild(qty);
-        row.appendChild(th); row.appendChild(info); row.appendChild(remove);
-        list.appendChild(row);
-      });
-      const shipping = subtotal>0 ? 8000 : 0;
-      $('subtotal').textContent = formatCOP(subtotal);
-      $('shipping').textContent = formatCOP(shipping);
-      $('total').textContent = formatCOP(subtotal + shipping);
+   function renderCart(){
+  const list = $('cartList'); 
+  list.innerHTML='';
+
+  const items = cartItems();
+
+  // Si el carrito está vacío
+  if(!items.length){ 
+    list.innerHTML = '<div style="padding:20px;color:var(--muted)">Tu carrito está vacío.</div>'; 
+    $('subtotal').textContent='$0'; 
+    $('shipping').textContent='$0'; 
+    $('total').textContent='$0'; 
+    let discountEl = $('discount');
+    if(discountEl) discountEl.textContent = '';
+    return; 
+  }
+
+  let subtotal = 0;
+  let totalQty = 0;
+
+  items.forEach(it=>{
+    subtotal += it.line;
+    totalQty += it.qty;
+
+    const row = document.createElement('div'); 
+    row.className='cart-item';
+
+    const th = document.createElement('div'); 
+    th.className='thumb-sm';
+    if(it.img){ 
+      const im = document.createElement('img'); 
+      im.src = it.img; 
+      th.appendChild(im); 
+    } else { 
+      th.textContent = it.title; 
     }
+
+    const info = document.createElement('div'); 
+    info.style.flex='1';
+
+    const t = document.createElement('div'); 
+    t.textContent = it.title; 
+    t.style.fontWeight='600';
+
+    const s = document.createElement('div'); 
+    s.className='small'; 
+    s.textContent = `${it.color} • Talla ${it.size} • ${formatCOP(it.price)} c/u`;
+
+    const qty = document.createElement('div'); 
+    qty.className='qty';
+    const minus = document.createElement('button'); 
+    minus.textContent='-'; 
+    minus.onclick = ()=> changeQty(it.key, it.qty-1);
+    const qText = document.createElement('div'); 
+    qText.textContent = it.qty; 
+    qText.style.minWidth='22px'; 
+    qText.style.textAlign='center';
+    const plus = document.createElement('button'); 
+    plus.textContent='+'; 
+    plus.onclick = ()=> changeQty(it.key, it.qty+1);
+    qty.appendChild(minus); 
+    qty.appendChild(qText); 
+    qty.appendChild(plus);
+
+    const remove = document.createElement('button'); 
+    remove.textContent='Eliminar'; 
+    remove.style.marginLeft='8px'; 
+    remove.onclick = ()=> removeFromCart(it.key);
+
+    info.appendChild(t); 
+    info.appendChild(s); 
+    info.appendChild(qty);
+    row.appendChild(th); 
+    row.appendChild(info); 
+    row.appendChild(remove);
+    list.appendChild(row);
+  });
+
+  // ------------------ Descuento ------------------
+  let discount = 0;
+  if(totalQty >= 6){ 
+    discount = subtotal * 0.10; // 10% de descuento
+  }
+
+  const shipping = subtotal > 0 ? 8000 : 0;
+  const totalWithDiscount = subtotal - discount + shipping;
+
+  $('subtotal').textContent = formatCOP(subtotal);
+  $('shipping').textContent = formatCOP(shipping);
+  $('total').textContent = formatCOP(totalWithDiscount);
+
+  // Mostrar descuento en el carrito
+  let discountEl = $('discount');
+  if(!discountEl){
+    discountEl = document.createElement('div');
+    discountEl.id = 'discount';
+    discountEl.style.fontSize = '13px';
+    discountEl.style.color = 'var(--muted)';
+    discountEl.style.marginTop = '4px';
+    $('cartSummary').insertBefore(discountEl, $('total').parentNode);
+  }
+  discountEl.textContent = discount > 0 ? `Descuento 10%: -${formatCOP(discount)}` : '';
+}
 
     function updateCount(){ const count = Object.values(cart).reduce((a,b)=>a+b,0); $('cartCount').textContent = count; }
 
@@ -436,72 +814,89 @@
     });
     $('cancelPay').addEventListener('click', ()=> overlayCheckout.classList.remove('open'));
 
-    $('confirmPay').addEventListener('click', async ()=>{
-      const name = $('buyerName').value.trim();
-      const phone = $('buyerPhone').value.trim();
-      const notes = $('notes').value.trim();
-      if(!name || !phone){ alert('Por favor ingresa nombre y teléfono.'); return; }
-      const items = cartItems();
-      const now = new Date();
-      const pad = n=>n.toString().padStart(2,'0');
-      const orderId = 'ZANTORI-' + now.getFullYear() + pad(now.getMonth()+1) + pad(now.getDate()) + pad(now.getHours()) + pad(now.getMinutes()) + pad(now.getSeconds());
-      const dateStr = pad(now.getDate()) + '/' + pad(now.getMonth()+1) + '/' + now.getFullYear();
-      const timeStr = pad(now.getHours()) + ':' + pad(now.getMinutes()) + ':' + pad(now.getSeconds());
-      const subtotal = items.reduce((s,i)=>s + i.line,0);
-      const shipping = subtotal>0?8000:0;
-      const total = subtotal + shipping;
+$('confirmPay').addEventListener('click', async ()=> {
+  const name = $('buyerName').value.trim();
+  const phone = $('buyerPhone').value.trim();
+  const notes = $('notes').value.trim();
+  if(!name || !phone){ alert('Por favor ingresa nombre y teléfono.'); return; }
 
-      const payload = {
-        orderId,
-        fecha: dateStr,
-        hora: timeStr,
-        nombre: name,
-        telefono: phone,
-        productos: items.map(it => ({ title: it.title, sku: it.sku, qty: it.qty, size: it.size, color: it.color, price: it.price })),
-        subtotal,
-        shipping,
-        total,
-        notas: notes
-      };
+  const items = cartItems();
+  if(!items.length){ alert('Tu carrito está vacío'); return; }
 
-      try {
-  await fetch(APPS_SCRIPT_URL, {
-    method: 'POST',
-    mode: 'no-cors',   // sigue siendo opaco, pero más compatible
-    body: JSON.stringify(payload)
-  });
-  console.log('Pedido enviado (no-cors) — no hay respuesta visible desde el navegador.');
-} catch (e) {
-  console.warn('Error enviando a Google Sheets:', e);
-}
-      // prepare WhatsApp message
-      const lines = [];
-      lines.push('¡Hola! Vengo de la página ZANTORI 🖤');
-      lines.push('');
-      lines.push(`Número de pedido: ${orderId}`);
-      lines.push(`Fecha: ${dateStr}  Hora: ${timeStr}`);
-      lines.push('');
-      lines.push('Información del cliente');
-      lines.push(`Nombre: ${name}`);
-      lines.push(`Teléfono: ${phone}`);
-      if(notes) lines.push(`Observaciones: ${notes}`);
-      lines.push('');
-      lines.push('Pedido:');
-      items.forEach(it=> {
-        lines.push(`- ${it.qty} × ${it.title} — Talla ${it.size} — Color ${it.color} — ${formatCOP(it.price)} c/u`);
-      });
-      lines.push('');
-      lines.push(`Total parcial: ${formatCOP(subtotal)} COP`);
-      lines.push(`Envío: ${formatCOP(shipping)} COP`);
-      lines.push(`Costo total: ${formatCOP(total)} COP`);
-      lines.push('');
-      lines.push('Envía este mensaje para crear tu pedido.');
+  const now = new Date();
+  const pad = n=>n.toString().padStart(2,'0');
+  const orderId = 'ZANTORI-' + now.getFullYear() + pad(now.getMonth()+1) + pad(now.getDate()) + pad(now.getHours()) + pad(now.getMinutes()) + pad(now.getSeconds());
+  const dateStr = pad(now.getDate()) + '/' + pad(now.getMonth()+1) + '/' + now.getFullYear();
+  const timeStr = pad(now.getHours()) + ':' + pad(now.getMinutes()) + ':' + pad(now.getSeconds());
 
-      const text = encodeURIComponent(lines.join('\n'));
-      // cleanup
-      cart = {}; saveCart(); overlayCheckout.classList.remove('open'); drawer.classList.remove('open');
-      window.location.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
+  // ------------------ Cálculo de subtotal y descuento ------------------
+  let subtotal = items.reduce((s,i)=> s + i.line, 0);
+  let totalQty = items.reduce((q,i)=> q + i.qty, 0);
+  let discount = totalQty >= 6 ? subtotal * 0.10 : 0;
+  const shipping = subtotal > 0 ? 8000 : 0;
+  const total = subtotal - discount + shipping;
+
+  // ------------------ Payload para Apps Script ------------------
+  const payload = {
+    orderId,
+    fecha: dateStr,
+    hora: timeStr,
+    nombre: name,
+    telefono: phone,
+    productos: items.map(it => ({ title: it.title, sku: it.sku, qty: it.qty, size: it.size, color: it.color, price: it.price })),
+    subtotal,
+    discount,
+    shipping,
+    total,
+    notas: notes
+  };
+
+  try {
+    await fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      body: JSON.stringify(payload)
     });
+    console.log('Pedido enviado (no-cors).');
+  } catch (e) {
+    console.warn('Error enviando a Google Sheets:', e);
+  }
+
+  // ------------------ Preparar mensaje WhatsApp ------------------
+  const lines = [];
+  lines.push('¡Hola! Vengo de la página ZANTORI 🖤');
+  lines.push('');
+  lines.push(`Número de pedido: ${orderId}`);
+  lines.push(`Fecha: ${dateStr}  Hora: ${timeStr}`);
+  lines.push('');
+  lines.push('Información del cliente');
+  lines.push(`Nombre: ${name}`);
+  lines.push(`Teléfono: ${phone}`);
+  if(notes) lines.push(`Observaciones: ${notes}`);
+  lines.push('');
+  lines.push('Pedido:');
+  items.forEach(it=> {
+    lines.push(`- ${it.qty} × ${it.title} — Talla ${it.size} — Color ${it.color} — ${formatCOP(it.price)} c/u`);
+  });
+  lines.push('');
+  lines.push(`Subtotal: ${formatCOP(subtotal)}`);
+  if(discount > 0) lines.push(`Descuento 10%: -${formatCOP(discount)}`);
+  lines.push(`Envío: ${formatCOP(shipping)}`);
+  lines.push(`Total a pagar: ${formatCOP(total)}`);
+  lines.push('');
+  lines.push('Envía este mensaje para crear tu pedido.');
+
+  const text = encodeURIComponent(lines.join('\n'));
+
+  // ------------------ Limpiar carrito y cerrar overlays ------------------
+  cart = {}; 
+  saveCart(); 
+  overlayCheckout.classList.remove('open'); 
+  drawer.classList.remove('open');
+
+  window.location.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
+});
+
 
     /* ------------- Search & init ------------- */
     $('search').addEventListener('input', e=>{
@@ -530,6 +925,14 @@
     updateCount();
     window._PRODUCTS = PRODUCTS;
     window._CART = ()=>cart;
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.getElementById('preloader').classList.add('hidden');
+    }, 1500); // Cambia el tiempo en ms si quieres más o menos duración
+  });
+</script>
+
+    
   </script>
 
   <!-- NOTE:
