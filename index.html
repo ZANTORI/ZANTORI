@@ -11,21 +11,24 @@
   position: fixed;
   bottom: 25px;
   right: 25px;
-  background: rgba(0, 0, 0, 0.75);
-  color: white;
+  background: rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(10px);
+  color: #111;
   text-decoration: none;
   font-weight: 600;
   font-family: 'Poppins', sans-serif;
-  padding: 14px 24px;
+  padding: 14px 22px;
   border-radius: 50px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 25px rgba(0,0,0,0.1);
+  border: 1px solid rgba(0,0,0,0.15);
   transition: all 0.3s ease;
   z-index: 1000;
 }
 
 #download-app-btn:hover {
-  background: black;
-  transform: translateY(-3px);
+  background: rgba(0, 0, 0, 0.15);
+  color: white;
+  transform: scale(1.05);
 }
     /* Preloader */
 #preloader {
@@ -968,5 +971,6 @@ $('confirmPay').addEventListener('click', async ()=> {
   -->
 </body>
 </html>
+
 
 
