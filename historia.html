@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Zantori · Nuestra Historia</title>
-
+<link rel="icon" href="WhatsApp Image 2025-09-28 at 3.04.34 AM (1).png" type="image/x-icon">
 <style>
   :root{
     --bg: #f5f2ee;
@@ -25,24 +25,40 @@
     line-height:1.6;
   }
   .container{max-width:900px;margin:36px auto;padding:0 20px}
+@media (max-width: 768px) {
+  .container { padding: 0 15px; margin: 20px auto; }
+}
 
   /* Header */
   header{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
-  .controls a{
+@media (max-width: 600px) {
+  header { flex-wrap: wrap; justify-content: center; gap: 10px; text-align: center; }
+  header img { margin-bottom: 10px; }
+  .controls { width: 100%; justify-content: center; display: flex; }
+}
+  .controls a.boton{
     display: inline-block;
     padding: 6px 12px;
-    background-color: #edf1f3;
-    color: #000;
+    background-color: #edf1f300; /* color azul botón */
+    color: #000000;
     text-decoration: none;
     border-radius: 8px;
     font-size: 16px;
-    font-weight: 600;
-    box-shadow: 0 2px 3px rgba(0,0,0,0.1);
-    border: 1px solid #000;
+    font-weight: arial;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #000000;
+  }
+  .controls a.boton:hover {
+    background-color: #e0e0e0; /* Color al pasar el ratón */
   }
 
   /* Historia */
   h2{text-align:center;margin-bottom:24px;font-size:28px}
+@media (max-width: 600px) {
+  h2 { font-size: 24px; }
+  h3 { font-size: 20px; }
+  article p { font-size: 15px; }
+}
   h3{margin-bottom:12px;font-size:20px;color:var(--accent);}
   article p{margin-bottom:18px;line-height:1.7;color:#333;}
 
@@ -105,8 +121,8 @@
     <header>
       <a href="index.html"><img src="WhatsApp Image 2025-09-28 at 3.04.34 AM (1).png" alt="Volver al inicio" style="width:80px;"></a>
       <div class="controls">
-        <a href="index.html">Inicio</a>
-        <a href="historia.html">Historia</a>
+        <a href="index.html" class="boton">Inicio</a>
+        <a href="historia.html" class="boton">Historia</a>
       </div>
     </header>
 
@@ -190,11 +206,11 @@
 
   <script>
     // Preloader
-    window.addEventListener('load', () => {
+    window.addEventListener("load", () => {
       setTimeout(() => {
-        document.getElementById('preloader').classList.add('hidden');
+        document.getElementById("preloader").classList.add("hidden");
       }, 1500); // Cambia el tiempo aquí en ms
-      document.getElementById('year').textContent = new Date().getFullYear();
+      document.getElementById("year").textContent = new Date().getFullYear();
     });
   </script>
 </body>
