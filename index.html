@@ -6,6 +6,28 @@
   <title>ZANTORI — Minimal Luxury Oversize</title>
   <meta name="description" content="ZANTORI - Minimal luxury oversize clothing shop" />
   <style>
+    #download-app-btn {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  padding: 14px 22px;
+  border-radius: 50px;
+  box-shadow: 0 4px 25px rgba(0,0,0,0.25);
+  border: 1px solid rgba(255,255,255,0.2);
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+#download-app-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.05);
+}
     /* Preloader */
 #preloader {
   position: fixed;
@@ -280,6 +302,7 @@
 
   <div class="container">
     <header>
+      
       <div>
         <a href="index.html">
     <img src="WhatsApp Image 2025-09-28 at 3.04.34 AM (1).png" alt="Volver al inicio" style="width:80px;">
@@ -290,6 +313,11 @@
          <a href="historia.html" class="boton">Historia</a>
         <button class="cart-btn" id="openCart"> 🛒 <span class="cart-count" id="cartCount">0</span></button>
         <input class="search" id="search" placeholder="Buscar: camisetas, hoodies..." />
+        <a href="https://www.mediafire.com/file/pqvyo6cc4thj5bt/zantori%255B1%255D.apk/file" 
+   target="_blank" 
+   id="download-app-btn">
+  📲 Descargar App
+</a>
       </div>
     </header>
 
@@ -941,3 +969,4 @@ $('confirmPay').addEventListener('click', async ()=> {
   -->
 </body>
 </html>
+
