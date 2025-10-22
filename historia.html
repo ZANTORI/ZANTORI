@@ -12,6 +12,9 @@
     --muted: #8b857b;
     --accent: #1f1a17;
     --glass: rgba(31,26,23,0.06);
+    --glass-light: rgba(255,255,255,0.1);
+    --translucent-white: rgba(255,255,255,0.2);
+    --translucent-black: rgba(0,0,0,0.2);
     --radius: 12px;
   }
   *{box-sizing:border-box;margin:0;padding:0}
@@ -38,18 +41,25 @@
 }
   .controls a.boton{
     display: inline-block;
-    padding: 6px 12px;
-    background-color: #edf1f300; /* color azul botón */
-    color: #000000;
+    padding: 8px 16px;
+    background: var(--translucent-white);
+    backdrop-filter: blur(10px);
+    color: var(--accent);
     text-decoration: none;
-    border-radius: 8px;
+    border-radius: var(--radius);
     font-size: 16px;
-    font-weight: arial;
-    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
-    border: 1px solid #000000;
+    font-weight: 600;
+    margin-left: 12px;
+    margin-right: 0;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border: 1px solid var(--accent);
   }
   .controls a.boton:hover {
-    background-color: #e0e0e0; /* Color al pasar el ratón */
+    background: var(--translucent-black);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   }
 
   /* Historia */
@@ -123,6 +133,8 @@
       <div class="controls">
         <a href="index.html" class="boton">Inicio</a>
         <a href="historia.html" class="boton">Historia</a>
+        <a href="filosofia.html"class="boton">filosofia</a>
+       <a href="contacto.html" class="boton">Contacto</a>
       </div>
     </header>
 
