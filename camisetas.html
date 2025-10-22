@@ -6,28 +6,6 @@
   <title>ZANTORI — Minimal Luxury Oversize</title>
   <meta name="description" content="ZANTORI - Minimal luxury oversize clothing shop" />
   <style>
-    #download-app-btn {
-  position: fixed;
-  bottom: 25px;
-  right: 25px;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(12px);
-  color: rgb(3, 3, 3);
-  text-decoration: none;
-  font-weight: 600;
-  font-family: 'Poppins', sans-serif;
-  padding: 14px 22px;
-  border-radius: 50px;
-  box-shadow: 0 4px 25px rgba(0,0,0,0.25);
-  border: 1px solid rgba(8, 8, 8, 0.2);
-  transition: all 0.3s ease;
-  z-index: 1000;
-}
-
-#download-app-btn:hover {
-  background: rgba(255, 255, 255, 0.25);
-  transform: scale(1.05);
-}
   #cookie-banner {
     position: fixed;
     bottom: 20px;
@@ -371,15 +349,11 @@
       </div>
       <div class="controls">
          <a href="index.html" class="boton">Inicio</a>
-         <a href="categorias.html" class="boton">categorias</a>
+         <a href="categorias.html" class="boton">Categorías</a>
          <a href="historia.html" class="boton">Historia</a>
+                 <a href="contacto.html" class="boton">Contacto</a>
         <button class="cart-btn" id="openCart"> 🛒 <span class="cart-count" id="cartCount">0</span></button>
         <input class="search" id="search" placeholder="Buscar: camisetas, hoodies..." />
-        <a href="https://www.mediafire.com/file/pqvyo6cc4thj5bt/zantori%255B1%255D.apk/file" 
-   target="_blank" 
-   id="download-app-btn">
-  📲 Descargar App
-</a>
       </div>
     </header>
 
@@ -525,7 +499,7 @@
     const PRODUCTS = [
        {
         id:'p01',
-        title:'Might Collection Tee',
+        title:'REBORN // The Awakening',
         sku:'MC-BL-01',
         price:60000,
         desc:'Camiseta oversize premium, algodón 200g, corte relajado y acabado mate.',
@@ -535,18 +509,19 @@
         sizes:['S','M','L']
       },
       {
-        id:'p06',
-        title:'Might Collection Tee',
+        id:'p02',
+        title:'AGONY // Synthetic Pain',
         sku:'MC-BL-01',
         price:60000,
         desc:'Camiseta oversize premium, algodón 200g, corte relajado y acabado mate.',
         variants:{
-          'Blanca':{label:'Blanca',images:['reborn logo.png', 'Reborn doblada.png','Reborn adelante.png', 'Reborn atras.png', 'Reborn colgada.png', 'Reborn etiqueta.png', 'Reborn persona 1.png', 'Reborn persona 2.png', 'Reborn pareja.png']},
+          'Blanca':{label:'Blanca',images:['agony logo.png', 'agony doblada.png','agony adelante.png', 'agony atras.png', 'agony colgada.png', 'agony etiqueta.png']},
+          'Negra':{label:'Negra',images:['agony logo.png', 'agonyn doblada.png','agonyn adelante.png', 'agonyn atras.png', 'agonyn colgada.png', 'agonyn etiqueta.png']},
         },
         sizes:['S','M','L']
       },
       {
-        id:'p05',
+        id:'p03',
         title:'Might Collection Tee',
         sku:'MC-BL-01',
         price:60000,
@@ -564,11 +539,13 @@
         desc:'Camiseta oversize premium, algodón 200g, corte relajado y acabado mate.',
         variants:{
           'Blanca':{label:'Blanca',images:['reborn logo.png', 'Reborn doblada.png','Reborn adelante.png', 'Reborn atras.png', 'Reborn colgada.png', 'Reborn etiqueta.png', 'Reborn persona 1.png', 'Reborn persona 2.png', 'Reborn pareja.png']},
+          'Negra':{label:'Blanca',images:['reborn logo.png', 'Reborn doblada.png','Reborn adelante.png', 'Reborn atras.png', 'Reborn colgada.png', 'Reborn etiqueta.png', 'Reborn persona 1.png', 'Reborn persona 2.png', 'Reborn pareja.png']},
+
         },
         sizes:['S','M','L']
       },
       {
-        id:'p02',
+        id:'p05',
         title:'Dark Oversize Hoodie',
         sku:'DO-HD-02',
         price:120000,
@@ -585,7 +562,7 @@
         sizes:['M','L','XL']
       },
       {
-        id:'p03',
+        id:'p06',
         title:'White Flow Long Tee',
         sku:'WF-TS-03',
         price:58000,
