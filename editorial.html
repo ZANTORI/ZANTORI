@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Editorial ZANTORI</title>
+<link rel="icon" href="WhatsApp Image 2025-09-28 at 3.04.34 AM (1).png" type="image/x-icon">
+<style>
+  :root{
+    --bg: #f5f2ee;
+    --card: #ffffff;
+    --muted: #8b857b;
+    --accent: #1f1a17;
+    --glass: rgba(31,26,23,0.06);
+    --glass-light: rgba(255,255,255,0.1);
+    --translucent-white: rgba(255,255,255,0.2);
+    --translucent-black: rgba(0,0,0,0.2);
+    --radius: 12px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background: linear-gradient(180deg,var(--bg),#efeae3);
+    color:var(--accent);
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    line-height:1.6;
+  }
+  .container{max-width:1400px;margin:0 auto;padding:0}
+  @media (max-width: 768px) {
+    .container { padding: 0; margin: 0; }
+  }
+
+  /* Header */
+  header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;position:fixed;top:0;left:0;right:0;background:rgba(245,242,238,0.9);backdrop-filter:blur(20px);z-index:1000;border-bottom:1px solid var(--glass)}
+  @media (max-width: 600px) {
+    header { flex-wrap: wrap; justify-content: center; gap: 10px; text-align: center; padding: 12px 15px; }
+    header img { margin-bottom: 10px; }
+    .controls { width: 100%; justify-content: center; display: flex; }
+  }
+  .controls a.boton{
+    display: inline-block;
+    padding: 8px 16px;
+    background: var(--translucent-white);
+    backdrop-filter: blur(10px);
+    color: var(--accent);
+    text-decoration: none;
+    border-radius: var(--radius);
+    font-size: 16px;
+    font-weight: 600;
+    margin-left: 12px;
+    margin-right: 0;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border: 1px solid var(--accent);
+  }
+  .controls a.boton:hover {
+    background: var(--translucent-black);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  }
+
+  /* Editorial */
+  .editorial-content {
+    margin-top: 80px;
+  }
+
+  .hero-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+  }
+
+  .hero-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(0,0,0,0.4), rgba(0,0,0,0.2));
+    z-index: 1;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    padding: 0 20px;
+  }
+
+  .hero-title {
+    font-size: 4rem;
+    font-weight: 300;
+    margin-bottom: 20px;
+    letter-spacing: -2px;
+  }
+
+  .hero-subtitle {
+    font-size: 1.5rem;
+    font-weight: 300;
+    opacity: 0.9;
+    margin-bottom: 40px;
+  }
+
+  .hero-quote {
+    font-size: 1.2rem;
+    font-style: italic;
+    opacity: 0.8;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 768px) {
+    .hero-title { font-size: 2.5rem; }
+    .hero-subtitle { font-size: 1.2rem; }
+    .hero-quote { font-size: 1rem; }
+  }
+
+  .editorial-section {
+    padding: 80px 0;
+    position: relative;
+  }
+
+  .section-image {
+    width: 100%;
+    height: 60vh;
+    object-fit: cover;
+    border-radius: 0;
+  }
+
+  .section-content {
+    max-width: 800px;
+    margin: 60px auto;
+    padding: 0 20px;
+    text-align: center;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+    font-weight: 300;
+    margin-bottom: 30px;
+    color: var(--accent);
+  }
+
+  .section-text {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--muted);
+    margin-bottom: 40px;
+  }
+
+  .inspirational-quote {
+    font-size: 1.5rem;
+    font-style: italic;
+    color: var(--accent);
+    text-align: center;
+    padding: 40px;
+    background: var(--translucent-white);
+    backdrop-filter: blur(20px);
+    border-radius: var(--radius);
+    margin: 40px 20px;
+    border: 1px solid var(--glass);
+  }
+
+  .gallery-section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .gallery-section {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .gallery-item {
+    position: relative;
+    height: 50vh;
+    overflow: hidden;
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .gallery-item:hover img {
+    transform: scale(1.05);
+  }
+
+  .gallery-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.7));
+    color: white;
+    padding: 30px;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+  }
+
+  .gallery-item:hover .gallery-overlay {
+    transform: translateY(0);
+  }
+
+  .gallery-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .gallery-subtitle {
+    font-size: 1rem;
+    opacity: 0.9;
+  }
+
+  /* Preloader */
+  #preloader {
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    flex-direction: column;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+  }
+  #preloader.hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .spinner-circle {
+    width: 100px;
+    height: 100px;
+    border: 6px solid #f3f3f3;
+    border-top: 6px solid var(--accent);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+  .spinner-circle img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+  }
+  @keyframes spin {
+    0% { transform: rotate(0deg);}
+    100% { transform: rotate(360deg);}
+  }
+
+  footer{margin-top:0;padding:40px 20px;color:var(--muted);text-align:center;font-size:14px;background:var(--accent);color:white}
+</style>
+</head>
+<body>
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="spinner-circle">
+      <img src="WhatsApp Image 2025-09-28 at 3.04.34 AM (1).png" alt="Logo Zantori">
+    </div>
+  </div>
+
+  <header>
+    <a href="index.html"><img src="WhatsApp Image 2025-09-28 at 3.04.34 AM (1).png" alt="Volver al inicio" style="width:60px;"></a>
+    <div class="controls">
+      <a href="index.html" class="boton">Inicio</a>
+      <a href="historia.html" class="boton">Historia</a>
+      <a href="lookbook.html" class="boton">Lookbook</a>
+      <a href="contacto.html" class="boton">Contacto</a>    </div>
+  </header>
+
+  <div class="editorial-content">
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=1920&h=1080&fit=crop" alt="Zantori Editorial" class="hero-image">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1 class="hero-title">Editorial ZANTORI</h1>
+        <p class="hero-subtitle">Minimal Luxury Urban</p>
+        <p class="hero-quote">"La elegancia está en la simplicidad, el poder en la autenticidad"</p>
+      </div>
+    </section>
+
+    <!-- Section 1 -->
+    <section class="editorial-section">
+      <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1920&h=800&fit=crop" alt="Urban Style" class="section-image">
+      <div class="section-content">
+        <h2 class="section-title">La Esencia Urbana</h2>
+        <p class="section-text">
+          En las calles de la ciudad, donde la energía late con fuerza, nace el estilo que define 
+          una generación. ZANTORI captura esa esencia urbana, transformándola en prendas que no 
+          solo se visten, sino que se sienten.
+        </p>
+        <div class="inspirational-quote">
+          "Cada calle es una pasarela, cada momento una oportunidad para expresar quién realmente eres."
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section">
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=800&h=600&fit=crop" alt="Minimal Style">
+        <div class="gallery-overlay">
+          <h3 class="gallery-title">Minimalismo Poderoso</h3>
+          <p class="gallery-subtitle">Menos es más, pero con impacto</p>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=600&fit=crop" alt="Urban Luxury">
+        <div class="gallery-overlay">
+          <h3 class="gallery-title">Lujo Cotidiano</h3>
+          <p class="gallery-subtitle">Elevando cada momento</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2 -->
+    <section class="editorial-section">
+      <img src="https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?w=1920&h=800&fit=crop" alt="Authentic Style" class="section-image">
+      <div class="section-content">
+        <h2 class="section-title">Autenticidad Sin Límites</h2>
+        <p class="section-text">
+          La verdadera moda no sigue tendencias, las crea. Cada pieza ZANTORI está diseñada 
+          para que seas tú mismo, sin disculpas, sin límites. Porque tu estilo es único, 
+          y merece ser celebrado.
+        </p>
+        <div class="inspirational-quote">
+          "La autenticidad es el lujo más exclusivo que puedes llevar."
+        </div>
+      </div>
+    </section>
+
+    <!-- Final Section -->
+    <section class="editorial-section">
+      <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1920&h=800&fit=crop" alt="Community" class="section-image">
+      <div class="section-content">
+        <h2 class="section-title">Comunidad ZANTORI</h2>
+        <p class="section-text">
+          Más que una marca, somos una comunidad de personas que creen en el poder del estilo 
+          auténtico. Cada miembro de nuestra familia ZANTORI contribuye a una cultura donde 
+          la individualidad es celebrada y la calidad es innegociable.
+        </p>
+        <div class="inspirational-quote">
+          "Juntos, redefinimos lo que significa ser auténticamente urbano."
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    © <span id="year"></span> ZANTORI · Minimal luxury streetwear · Hecho con Amor y Pasión ❤
+  </footer>
+
+  <script>
+    // Preloader
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        document.getElementById("preloader").classList.add("hidden");
+      }, 1500);
+      document.getElementById("year").textContent = new Date().getFullYear();
+    });
+
+    // Smooth scrolling for better UX
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+</body>
+</html>

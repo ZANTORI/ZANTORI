@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contáctanos — ZANTORI</title>
+<link rel="icon" href="WhatsApp Image 2025-09-28 at 3.04.34 AM (1).png" type="image/x-icon">
+<style>
+  :root{
+    --bg: #f5f2ee;
+    --card: #ffffff;
+    --muted: #8b857b;
+    --accent: #1f1a17;
+    --glass: rgba(31,26,23,0.06);
+    --glass-light: rgba(255,255,255,0.1);
+    --translucent-white: rgba(255,255,255,0.2);
+    --translucent-black: rgba(0,0,0,0.2);
+    --radius: 12px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background: linear-gradient(180deg,var(--bg),#efeae3);
+    color:var(--accent);
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    line-height:1.6;
+  }
+  .container{max-width:800px;margin:36px auto;padding:0 20px}
+  @media (max-width: 768px) {
+    .container { padding: 0 15px; margin: 20px auto; }
+  }
+
+  /* Header */
+  header{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
+  @media (max-width: 600px) {
+    header { flex-wrap: wrap; justify-content: center; gap: 10px; text-align: center; }
+    header img { margin-bottom: 10px; }
+    .controls { width: 100%; justify-content: center; display: flex; }
+  }
+  .controls a.boton{
+    display: inline-block;
+    padding: 8px 16px;
+    background: var(--translucent-white);
+    backdrop-filter: blur(10px);
+    color: var(--accent);
+    text-decoration: none;
+    border-radius: var(--radius);
+    font-size: 16px;
+    font-weight: 600;
+    margin-left: 12px;
+    margin-right: 0;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border: 1px solid var(--accent);
+  }
+  .controls a.boton:hover {
+    background: var(--translucent-black);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  }
+
+  /* Contacto */
+  h2{text-align:center;margin-bottom:24px;font-size:28px}
+  @media (max-width: 600px) {
+    h2 { font-size: 24px; }
+  }
+
+  .contact-intro {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 18px;
+    color: var(--muted);
+    font-weight: 300;
+  }
+
+  .contact-card {
+    background: var(--translucent-white);
+    backdrop-filter: blur(20px);
+    border-radius: var(--radius);
+    padding: 40px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    border: 1px solid var(--glass);
+    text-align: center;
+    margin: 40px 0;
+  }
+
+  .social-links {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 32px;
+  }
+
+  @media (max-width: 600px) {
+    .social-links {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(255,255,255,0.8);
+    backdrop-filter: blur(10px);
+    border: 2px solid var(--accent);
+    border-radius: var(--radius);
+    text-decoration: none;
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .social-link:hover {
+    background: var(--accent);
+    color: white;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(31,26,23,0.3);
+  }
+
+  .social-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 12px;
+    filter: brightness(0) saturate(100%);
+    transition: filter 0.3s ease;
+  }
+
+  .social-link:hover .social-icon {
+    filter: brightness(0) invert(1);
+  }
+
+  .contact-info {
+    margin-top: 40px;
+    padding-top: 32px;
+    border-top: 1px solid var(--glass);
+  }
+
+  .contact-info h3 {
+    font-size: 20px;
+    margin-bottom: 16px;
+    color: var(--accent);
+  }
+
+  .contact-info p {
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  /* Preloader */
+  #preloader {
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    flex-direction: column;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+  }
+  #preloader.hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .spinner-circle {
+    width: 100px;
+    height: 100px;
+    border: 6px solid #f3f3f3;
+    border-top: 6px solid var(--accent);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+  .spinner-circle img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+  }
+  @keyframes spin {
+    0% { transform: rotate(0deg);}
+    100% { transform: rotate(360deg);}
+  }
+
+  footer{margin-top:36px;padding:24px 0;color:var(--muted);text-align:center;font-size:14px}
+</style>
+</head>
+<body>
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="spinner-circle">
+      <img src="WhatsApp Image 2025-09-28 at 3.04.34 AM (1).png" alt="Logo Zantori">
+    </div>
+  </div>
+
+  <div class="container">
+    <header>
+      <a href="index.html"><img src="WhatsApp Image 2025-09-28 at 3.04.34 AM (1).png" alt="Volver al inicio" style="width:80px;"></a>
+      <div class="controls">
+        <a href="index.html" class="boton">Inicio</a>
+        <a href="historia.html" class="boton">Historia</a>
+        <a href="lookbook.html" class="boton">Lookbook</a>
+        <a href="contacto.html" class="boton">Contacto</a>
+      </div>
+    </header>
+
+    <main>
+      <h2>Contáctanos — ZANTORI</h2>
+      <p class="contact-intro">¿Quieres colaborar o tienes dudas? Escríbenos:</p>
+      
+      <div class="contact-card">
+        <div class="social-links">
+          <a href="https://wa.me/573159259531" target="_blank" class="social-link">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="social-icon">
+            WhatsApp
+          </a>
+          
+          <a href="https://www.instagram.com/__zantori__/" target="_blank" class="social-link">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Instagram_logo_2022.svg" alt="Instagram" class="social-icon">
+            Instagram
+          </a>
+          
+          <a href="https://www.tiktok.com/@__zantori__" target="_blank" class="social-link">
+            <img src="https://img.freepik.com/premium-vector/tik-tok-glitch-icon-social-media-tik-tok-icon-vinnitsa-ukraine-february-22-02-2023_250246-536.jpg?semt=ais_hybrid&w=740&q=80" alt="TikTok" class="social-icon">
+            TikTok
+          </a>
+          
+          <a href="mailto:zantoriofficial@gmail.com" class="social-link">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Gmail_icon_%282020%29.svg" alt="Email" class="social-icon">
+            Correo
+          </a>
+        </div>
+
+        <div class="contact-info">
+          <h3>¿Por qué contactarnos?</h3>
+          <p>
+            Estamos aquí para ayudarte con cualquier consulta sobre nuestras colecciones, 
+            colaboraciones, pedidos especiales o simplemente para conocer más sobre la 
+            filosofía ZANTORI. Tu feedback es fundamental para nuestro crecimiento.
+          </p>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      © <span id="year"></span> ZANTORI · Minimal luxury streetwear · Hecho con Amor y Pasión ❤
+    </footer>
+  </div>
+
+  <script>
+    // Preloader
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        document.getElementById("preloader").classList.add("hidden");
+      }, 1500);
+      document.getElementById("year").textContent = new Date().getFullYear();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nuestra Filosofía — ZANTORI</title>
+<link rel="icon" href="WhatsApp Image 2025-09-28 at 3.04.34 AM (1).png" type="image/x-icon">
+<style>
+  :root{
+    --bg: #f5f2ee;
+    --card: #ffffff;
+    --muted: #8b857b;
+    --accent: #1f1a17;
+    --glass: rgba(31,26,23,0.06);
+    --glass-light: rgba(255,255,255,0.1);
+    --translucent-white: rgba(255,255,255,0.2);
+    --translucent-black: rgba(0,0,0,0.2);
+    --radius: 12px;
+    --cream: #f8f6f0;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background: linear-gradient(135deg, var(--cream), #f0ede6, var(--bg));
+    color:var(--accent);
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    line-height:1.6;
+  }
+  .container{max-width:900px;margin:36px auto;padding:0 20px}
+  @media (max-width: 768px) {
+    .container { padding: 0 15px; margin: 20px auto; }
+  }
+
+  /* Header */
+  header{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
+  @media (max-width: 600px) {
+    header { flex-wrap: wrap; justify-content: center; gap: 10px; text-align: center; }
+    header img { margin-bottom: 10px; }
+    .controls { width: 100%; justify-content: center; display: flex; }
+  }
+  .controls a.boton{
+    display: inline-block;
+    padding: 8px 16px;
+    background: var(--translucent-white);
+    backdrop-filter: blur(10px);
+    color: var(--accent);
+    text-decoration: none;
+    border-radius: var(--radius);
+    font-size: 16px;
+    font-weight: 600;
+    margin-left: 12px;
+    margin-right: 0;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border: 1px solid var(--accent);
+  }
+  .controls a.boton:hover {
+    background: var(--translucent-black);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  }
+
+  /* Filosofía */
+  h2{text-align:center;margin-bottom:24px;font-size:28px}
+  @media (max-width: 600px) {
+    h2 { font-size: 24px; }
+  }
+
+  .philosophy-content {
+    background: var(--translucent-white);
+    backdrop-filter: blur(20px);
+    border-radius: var(--radius);
+    padding: 60px 40px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    border: 1px solid var(--glass);
+    margin: 40px 0;
+    text-align: center;
+  }
+
+  @media (max-width: 600px) {
+    .philosophy-content {
+      padding: 40px 20px;
+    }
+  }
+
+  .philosophy-intro {
+    font-size: 20px;
+    color: var(--muted);
+    margin-bottom: 40px;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    margin-top: 50px;
+  }
+
+  @media (max-width: 768px) {
+    .values-grid {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+  }
+
+  .value-item {
+    text-align: left;
+    padding: 30px;
+    background: rgba(255,255,255,0.6);
+    backdrop-filter: blur(10px);
+    border-radius: var(--radius);
+    border: 1px solid var(--glass);
+    transition: all 0.3s ease;
+  }
+
+  .value-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.1);
+  }
+
+  .value-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 16px;
+    text-align: center;
+  }
+
+  .value-description {
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 1.7;
+    text-align: center;
+  }
+
+  .philosophy-quote {
+    margin: 50px 0;
+    padding: 40px;
+    background: linear-gradient(135deg, rgba(31,26,23,0.05), rgba(31,26,23,0.02));
+    border-radius: var(--radius);
+    border-left: 4px solid var(--accent);
+  }
+
+  .quote-text {
+    font-size: 22px;
+    font-style: italic;
+    color: var(--accent);
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  .quote-author {
+    font-size: 16px;
+    color: var(--muted);
+    font-weight: 600;
+  }
+
+  /* Preloader */
+  #preloader {
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    flex-direction: column;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+  }
+  #preloader.hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .spinner-circle {
+    width: 100px;
+    height: 100px;
+    border: 6px solid #f3f3f3;
+    border-top: 6px solid var(--accent);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+  .spinner-circle img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+  }
+  @keyframes spin {
+    0% { transform: rotate(0deg);}
+    100% { transform: rotate(360deg);}
+  }
+
+  footer{margin-top:36px;padding:24px 0;color:var(--muted);text-align:center;font-size:14px}
+</style>
+</head>
+<body>
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="spinner-circle">
+      <img src="WhatsApp Image 2025-09-28 at 3.04.34 AM (1).png" alt="Logo Zantori">
+    </div>
+  </div>
+
+  <div class="container">
+    <header>
+      <a href="index.html"><img src="WhatsApp Image 2025-09-28 at 3.04.34 AM (1).png" alt="Volver al inicio" style="width:80px;"></a>
+      <div class="controls">
+        <a href="index.html" class="boton">Inicio</a>
+        <a href="historia.html" class="boton">Historia</a>
+        <a href="lookbook.html" class="boton">Lookbook</a>
+        <a href="filosofia.html" class="boton">Filosofía</a>
+                <a href="contacto.html" class="boton">Contacto</a>
+      </div>
+    </header>
+
+    <main>
+      <h2>Nuestra Filosofía — ZANTORI</h2>
+      
+      <div class="philosophy-content">
+        <p class="philosophy-intro">
+          En ZANTORI creemos que la moda es más que ropa: es una expresión de identidad, 
+          autenticidad y estilo de vida. Nuestra filosofía se basa en cuatro pilares fundamentales 
+          que definen cada prenda que creamos.
+        </p>
+
+        <div class="values-grid">
+          <div class="value-item">
+            <h3 class="value-title">Minimalismo</h3>
+            <p class="value-description">
+              Menos es más. Cada diseño está pensado para ser atemporal, funcional y elegante. 
+              Eliminamos lo superfluo para destacar la esencia y la calidad de cada pieza.
+            </p>
+          </div>
+
+          <div class="value-item">
+            <h3 class="value-title">Autenticidad</h3>
+            <p class="value-description">
+              Ser fiel a uno mismo es la máxima expresión de estilo. Nuestras prendas están 
+              diseñadas para que cada persona pueda expresar su verdadero yo sin compromisos.
+            </p>
+          </div>
+
+          <div class="value-item">
+            <h3 class="value-title">Lujo Cotidiano</h3>
+            <p class="value-description">
+              El lujo no debe ser exclusivo ni inaccesible. Creamos prendas de alta calidad 
+              que elevan el día a día, haciendo que cada momento se sienta especial.
+            </p>
+          </div>
+
+          <div class="value-item">
+            <h3 class="value-title">Calidad y Esencia Urbana</h3>
+            <p class="value-description">
+              Cada prenda está hecha con materiales premium y atención al detalle. 
+              Capturamos la energía de la ciudad y la transformamos en estilo duradero.
+            </p>
+          </div>
+        </div>
+
+        <div class="philosophy-quote">
+          <p class="quote-text">
+            "La verdadera elegancia no está en lo que llevas, sino en cómo te hace sentir. 
+            En ZANTORI, cada prenda es una extensión de tu personalidad."
+          </p>
+          <p class="quote-author">— Filosofía ZANTORI</p>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      © <span id="year"></span> ZANTORI · Minimal luxury streetwear · Hecho con Amor y Pasión ❤
+    </footer>
+  </div>
+
+  <script>
+    // Preloader
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        document.getElementById("preloader").classList.add("hidden");
+      }, 1500);
+      document.getElementById("year").textContent = new Date().getFullYear();
+    });
+  </script>
+</body>
+</html>

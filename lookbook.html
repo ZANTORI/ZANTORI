@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lookbook — #ZANTORISTYLE</title>
+<link rel="icon" href="WhatsApp Image 2025-09-28 at 3.04.34 AM (1).png" type="image/x-icon">
+<style>
+  :root{
+    --bg: #f5f2ee;
+    --card: #ffffff;
+    --muted: #8b857b;
+    --accent: #1f1a17;
+    --glass: rgba(31,26,23,0.06);
+    --glass-light: rgba(255,255,255,0.1);
+    --translucent-white: rgba(255,255,255,0.2);
+    --translucent-black: rgba(0,0,0,0.2);
+    --radius: 12px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background: linear-gradient(180deg,var(--bg),#efeae3);
+    color:var(--accent);
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    line-height:1.6;
+  }
+  .container{max-width:1200px;margin:36px auto;padding:0 20px}
+  @media (max-width: 768px) {
+    .container { padding: 0 15px; margin: 20px auto; }
+  }
+
+  /* Header */
+  header{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
+  @media (max-width: 600px) {
+    header { flex-wrap: wrap; justify-content: center; gap: 10px; text-align: center; }
+    header img { margin-bottom: 10px; }
+    .controls { width: 100%; justify-content: center; display: flex; }
+  }
+  .controls a.boton{
+    display: inline-block;
+    padding: 8px 16px;
+    background: var(--translucent-white);
+    backdrop-filter: blur(10px);
+    color: var(--accent);
+    text-decoration: none;
+    border-radius: var(--radius);
+    font-size: 16px;
+    font-weight: 600;
+    margin-left: 12px;
+    margin-right: 0;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border: 1px solid var(--accent);
+  }
+  .controls a.boton:hover {
+    background: var(--translucent-black);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  }
+
+  /* Lookbook */
+  h2{text-align:center;margin-bottom:24px;font-size:28px}
+  @media (max-width: 600px) {
+    h2 { font-size: 24px; }
+  }
+  
+  .lookbook-intro {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 18px;
+    color: var(--muted);
+    font-weight: 300;
+  }
+
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+  
+  @media (max-width: 768px) {
+    .gallery {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+  }
+
+  .gallery-item {
+    position: relative;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--card);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    border: 1px solid var(--glass);
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .gallery-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.15);
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .gallery-item:hover img {
+    transform: scale(1.05);
+  }
+
+  .gallery-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.7));
+    color: white;
+    padding: 20px;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+  }
+
+  .gallery-item:hover .gallery-overlay {
+    transform: translateY(0);
+  }
+
+  .gallery-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .gallery-subtitle {
+    font-size: 14px;
+    opacity: 0.9;
+  }
+
+  /* Preloader */
+  #preloader {
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    flex-direction: column;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+  }
+  #preloader.hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .spinner-circle {
+    width: 100px;
+    height: 100px;
+    border: 6px solid #f3f3f3;
+    border-top: 6px solid var(--accent);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+  .spinner-circle img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+  }
+  @keyframes spin {
+    0% { transform: rotate(0deg);}
+    100% { transform: rotate(360deg);}
+  }
+
+  footer{margin-top:36px;padding:24px 0;color:var(--muted);text-align:center;font-size:14px}
+</style>
+</head>
+<body>
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="spinner-circle">
+      <img src="WhatsApp Image 2025-09-28 at 3.04.34 AM (1).png" alt="Logo Zantori">
+    </div>
+  </div>
+
+  <div class="container">
+    <header>
+      <a href="index.html"><img src="WhatsApp Image 2025-09-28 at 3.04.34 AM (1).png" alt="Volver al inicio" style="width:80px;"></a>
+      <div class="controls">
+        <a href="index.html" class="boton">Inicio</a>
+        <a href="historia.html" class="boton">Historia</a>
+        <a href="lookbook.html" class="boton">Lookbook</a>
+                <a href="contacto.html" class="boton">Contacto</a>
+      </div>
+    </header>
+
+    <main>
+      <h2>Lookbook — #ZANTORISTYLE</h2>
+      <p class="lookbook-intro">Inspírate con el estilo de nuestra comunidad</p>
+      
+      <div class="gallery">
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=400&h=300&fit=crop" alt="Zantori Style 1">
+          <div class="gallery-overlay">
+            <div class="gallery-title">Urban Minimal</div>
+            <div class="gallery-subtitle">Oversize Collection</div>
+          </div>
+        </div>
+        
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop" alt="Zantori Style 2">
+          <div class="gallery-overlay">
+            <div class="gallery-title">Street Luxury</div>
+            <div class="gallery-subtitle">Premium Quality</div>
+          </div>
+        </div>
+        
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=400&h=300&fit=crop" alt="Zantori Style 3">
+          <div class="gallery-overlay">
+            <div class="gallery-title">Authentic Vibes</div>
+            <div class="gallery-subtitle">Community Style</div>
+          </div>
+        </div>
+        
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop" alt="Zantori Style 4">
+          <div class="gallery-overlay">
+            <div class="gallery-title">Minimal Power</div>
+            <div class="gallery-subtitle">Essential Pieces</div>
+          </div>
+        </div>
+        
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?w=400&h=300&fit=crop" alt="Zantori Style 5">
+          <div class="gallery-overlay">
+            <div class="gallery-title">Urban Mystique</div>
+            <div class="gallery-subtitle">Signature Style</div>
+          </div>
+        </div>
+        
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=300&fit=crop" alt="Zantori Style 6">
+          <div class="gallery-overlay">
+            <div class="gallery-title">Luxury Street</div>
+            <div class="gallery-subtitle">Premium Collection</div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      © <span id="year"></span> ZANTORI · Minimal luxury streetwear · Hecho con Amor y Pasión ❤
+    </footer>
+  </div>
+
+  <script>
+    // Preloader
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        document.getElementById("preloader").classList.add("hidden");
+      }, 1500);
+      document.getElementById("year").textContent = new Date().getFullYear();
+    });
+  </script>
+</body>
+</html>
