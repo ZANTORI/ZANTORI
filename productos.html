@@ -1,231 +1,1045 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ZANTORI — Detalle de Producto</title>
-<link rel="icon" href="WhatsApp Image 2025-09-28 at 3.04.34 AM (1).png" type="image/x-icon">
-<style>
-  :root{
-    --bg: #f5f2ee;
-    --card: #ffffff;
-    --muted: #8b857b;
-    --accent: #1f1a17;
-    --glass: rgba(31,26,23,0.06);
-    --radius: 12px;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html,body{height:100%}
-  body{
-    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    background: linear-gradient(180deg,var(--bg),#efeae3);
-    color:var(--accent);
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
-    line-height:1.4;
-  }
-  .container{max-width:1150px;margin:36px auto;padding:0 20px}
-  @media (max-width: 768px) {
-    .container { padding: 0 15px; margin: 20px auto; }
-  }
-  header{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
-  @media (max-width: 600px) {
-    header { flex-wrap: wrap; justify-content: center; gap: 10px; }
-    .controls { width: 100%; justify-content: center; display: flex; }
-  }
-  .brand{font-weight:800;font-size:24px;letter-spacing:3px}
-  .tag{font-size:13px;color:var(--muted)}
-  .controls{display:flex;gap:14px;align-items:center}
-  .search{border:1px solid var(--glass);padding:10px 14px;border-radius:10px;min-width:260px;background:transparent}
-  @media (max-width: 600px) {
-    .search { min-width: auto; width: 100%; }
-  }
-  .cart-btn{position:relative;border:1px solid var(--accent);background:transparent;padding:9px 14px;border-radius:10px;cursor:pointer}
-  .cart-count{position:absolute;top:-8px;right:-8px;background:var(--accent);color:#fff;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:12px}
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>ZANTORI — Minimal Luxury Oversize</title>
+  <meta name="description" content="ZANTORI - Minimal luxury oversize clothing shop" />
+  <style>
+    #download-app-btn {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  color: rgb(3, 3, 3);
+  text-decoration: none;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  padding: 14px 22px;
+  border-radius: 50px;
+  box-shadow: 0 4px 25px rgba(0,0,0,0.25);
+  border: 1px solid rgba(8, 8, 8, 0.2);
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
 
-  /* Product Detail Styles */
-  .product-detail {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    margin-top: 40px;
-    background: var(--card);
-    border-radius: var(--radius);
-    padding: 30px;
-    border: 1px solid var(--glass);
-    box-shadow: 0 8px 24px rgba(31, 26, 23, 0.05);
-  }
-  @media (max-width: 900px) {
-    .product-detail { grid-template-columns: 1fr; gap: 20px; padding: 20px; }
-  }
-  .product-image-gallery {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  .main-image img {
-    width: 100%;
-    height: auto;
-    border-radius: var(--radius);
-  }
-  .thumbnail-images {
-    display: flex;
-    gap: 10px;
-    overflow-x: auto;
-  }
-  .thumbnail-images img {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 8px;
-    cursor: pointer;
-    border: 2px solid transparent;
-  }
-  .thumbnail-images img.active {
-    border-color: var(--accent);
-  }
-  .product-info h1 {
-    font-size: 36px;
-    margin-bottom: 10px;
-  }
-  .product-info .price {
-    font-size: 28px;
-    font-weight: 800;
-    margin-bottom: 20px;
-  }
-  .product-info .description {
-    font-size: 16px;
-    line-height: 1.6;
-    color: var(--muted);
-    margin-bottom: 20px;
-  }
-  .product-info .details p {
-    margin-bottom: 8px;
-    font-size: 15px;
-  }
-  .product-info .add-to-cart-btn {
-    background: var(--accent);
+#download-app-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.05);
+}
+  #cookie-banner {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    background: rgba(25, 25, 25, 0.9);
     color: #fff;
+    padding: 16px 24px;
+    border-radius: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+    z-index: 10000;
+    font-family: 'Poppins', sans-serif;
+    transition: opacity 0.4s ease;
+  }
+
+  #cookie-banner p {
+    margin: 0;
+    font-size: 14px;
+  }
+
+  #cookie-banner button {
+    background: #4CAF50;
+    color: white;
     border: none;
-    padding: 15px 25px;
+    padding: 8px 16px;
     border-radius: 10px;
     cursor: pointer;
-    font-size: 18px;
     font-weight: 600;
-    margin-top: 30px;
     transition: background 0.3s ease;
-    width: 100%;
   }
-  .product-info .add-to-cart-btn:hover {
-    background: #333;
-  }
-  footer{margin-top:36px;padding:24px 0;color:var(--muted);text-align:center;font-size:14px}
 
-  /* Preloader */
-  #preloader {
-    position: fixed;
-    inset: 0;
-    background: var(--bg);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    flex-direction: column;
-    transition: opacity 0.6s ease, visibility 0.6s ease;
+  #cookie-banner button:hover {
+    background: #45a049;
   }
-  #preloader.hidden {
+
+  #cookie-banner.hidden {
     opacity: 0;
-    visibility: hidden;
+    pointer-events: none;
   }
-  .spinner-circle {
-    width: 100px;
-    height: 100px;
-    border: 6px solid #8b857b;
-    border-top: 6px solid var(--accent);
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 16px;
+    /* Preloader */
+#preloader {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  flex-direction: column;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+#preloader.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.spinner-circle {
+  width: 100px;
+  height: 100px;
+  border: 6px solid #8b857b;
+  border-top: 6px solid var(--accent);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+.spinner-circle img {
+  width: 80px; 
+  height: 80px;
+  border-radius: 50%;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg);}
+  100% { transform: rotate(360deg);}
+}
+
+  .boton {
+    display: inline-block;
+    padding: 6px;
+    background-color: #edf1f300; /* color azul botón */
+    color: #000000;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: arial;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #000000;
+}
+    :root{
+      --bg: #f5f2ee;
+      --card: #ffffff;
+      --muted: #8b857b;
+      --accent: #1f1a17;
+      --glass: rgba(31,26,23,0.06);
+      --radius: 12px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg,var(--bg),#efeae3);
+      color:var(--accent);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.4;
+    }
+    .container{max-width:1150px;margin:36px auto;padding:0 20px}
+@media (max-width: 768px) {
+  .container { padding: 0 15px; margin: 20px auto; }
+}
+    header{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
+    .brand{font-weight:800;font-size:24px;letter-spacing:3px}
+    .tag{font-size:13px;color:var(--muted)}
+    .controls{display:flex;gap:14px;align-items:center}
+    .search{border:1px solid var(--glass);padding:10px 14px;border-radius:10px;min-width:260px;background:transparent}
+@media (max-width: 600px) {
+  .search { min-width: auto; width: 100%; }
+  header { flex-wrap: wrap; justify-content: center; gap: 10px; }
+  .controls { width: 100%; justify-content: center; display: flex; }
+}
+    .cart-btn{position:relative;border:1px solid var(--accent);background:transparent;padding:9px 14px;border-radius:10px;cursor:pointer}
+    .cart-count{position:absolute;top:-8px;right:-8px;background:var(--accent);color:#fff;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:12px}
+
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:22px;margin-top:28px}
+@media (max-width: 600px) {
+  .grid { grid-template-columns: 1fr; }
+}
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 16px;
+  border: 1px solid var(--glass);
+  box-shadow: 0 8px 24px rgba(31, 26, 23, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  backdrop-filter: blur(var(--blur));
+  -webkit-backdrop-filter: blur(var(--blur)); /* Para Safari */
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: 0 12px 32px rgba(31, 26, 23, 0.08);
+  transform: translateY(-2px);
+}
+    .thumb{height:300px;border-radius:10px;background:#f6f3f0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .thumb img{width:100%;height:100%;object-fit:cover}
+    .title{font-weight:700;font-size:16px}
+    .meta{font-size:13px;color:var(--muted)}
+    .price{font-weight:800;margin-top:6px}
+    .row{display:flex;gap:8px;align-items:center}
+    .btn{padding:8px 12px;border-radius:8px;border:1px solid var(--accent);background:transparent;cursor:pointer}
+    .primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+
+.drawer {
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 380px;
+@media (max-width: 480px) {
+  .drawer { width: 90%; }
+}
+  background: rgba(255, 255, 255, 0.15); /* traslúcido */
+  backdrop-filter: blur(20px); /* efecto glass */
+  -webkit-backdrop-filter: blur(20px); /* Safari */
+  box-shadow: -20px 0 60px rgba(31, 26, 23, 0.15); /* sombra suave */
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  transform: translateX(110%);
+  transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55), box-shadow 0.3s ease; /* animación con efecto “elastic” */
+  z-index: 80;
+  padding: 24px;
+  overflow-y: auto;
+  opacity: 0; /* para animación de aparición */
+}
+
+.drawer.open {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* Título del drawer */
+.drawer h3 {
+  margin-bottom: 20px;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--accent);
+  text-align: left;
+}
+
+/* Scroll personalizado */
+.drawer::-webkit-scrollbar {
+  width: 8px;
+}
+
+.drawer::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+
+.drawer::-webkit-scrollbar-thumb {
+  background: rgba(31, 26, 23, 0.3);
+  border-radius: 4px;
+}
+
+.drawer::-webkit-scrollbar-thumb:hover {
+  background: rgba(31, 26, 23, 0.5);
+}
+
+    .cart-item{display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px dashed #eee}
+    .thumb-sm{width:72px;height:72px;border-radius:8px;background:#faf7f5;display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .thumb-sm img{width:100%;height:100%;object-fit:cover}
+    .qty{display:flex;gap:6px;align-items:center}
+    .small{font-size:13px;color:var(--muted)}
+    .checkout{display:block;margin-top:18px;padding:12px;border-radius:10px;background:var(--accent);color:#fff;text-align:center;text-decoration:none;cursor:pointer}
+
+    .overlay{position:fixed;inset:0;background:rgba(0,0,0,0.48);display:none;align-items:center;justify-content:center;z-index:120;padding:16px}
+    .overlay.open{display:flex}
+:root {
+  --card: #ffffff; /* Puedes cambiar a #f9f9f9 si prefieres un fondo menos blanco */
+}
+
+/* Modal container */
+.modal {
+  background: var(--card);
+  border-radius: 16px;
+  max-width: 880px;
+  width: 100%;
+  padding: 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  font-family: 'Segoe UI', sans-serif;
+  animation: fadeInModal 0.4s ease-out;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Fade-in animation */
+@keyframes fadeInModal {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
   }
-  .spinner-circle img {
-    width: 80px; 
-    height: 80px;
-    border-radius: 50%;
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
-  @keyframes spin {
-    0% { transform: rotate(0deg);}
-    100% { transform: rotate(360deg);}
+}
+
+/* Inputs dentro del modal */
+.modal input {
+  padding: 12px 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.modal input:focus {
+  border-color: #8b857b;
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+  outline: none;
+}
+
+/* Botones */
+.modal button {
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+  border: none;
+}
+
+.modal .primary {
+  background-color: #8b857b;
+  color: white;
+}
+
+.modal .btn:not(.primary) {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+.modal button:hover {
+  opacity: 0.9;
+}
+
+/* Responsive: 1 columna en pantallas pequeñas */
+@media (max-width: 748px) {
+  .body {
+    font-size: 14px;
+    padding: 0px;
   }
-</style>
+}
+    .gallery-main{height:420px;border-radius:12px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#faf7f5}
+    .gallery-main img{width:100%;height:100%;object-fit:cover}
+    .gallery-thumbs{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+    .gallery-thumbs img{width:64px;height:64px;object-fit:cover;border-radius:8px;cursor:pointer;border:2px solid transparent}
+    .gallery-thumbs img.active{border-color:var(--accent)}
+    .selects{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+    .chip{padding:8px 10px;border-radius:8px;border:1px solid #e6e1dc;cursor:pointer;font-size:14px}
+    .chip.active{border-color:var(--accent);box-shadow:0 6px 18px rgba(31,26,23,0.06)}
+
+    footer{margin-top:36px;padding:24px 0;color:var(--muted);text-align:center;font-size:14px}
+
+    @media (max-width:900px){ .modal{grid-template-columns:1fr} .gallery-main{height:300px} .thumb{height:220px} }
+  </style>
 </head>
 <body>
-  <!-- Preloader -->
-  <div id="preloader">
-    <div class="spinner-circle">
-      <img src="WhatsApp Image 2025-09-28 at 3.04.34 AM (1).png" alt="Logo Zantori">
-    </div>
+
+    <!-- Preloader -->
+<div id="preloader">
+  <div class="spinner-circle">
+    <img src="WhatsApp Image 2025-09-28 at 3.04.34 AM (1).png" alt="Logo Zantori">
   </div>
+</div>
+<div id="cookie-banner">
+  <p>🍪 Usamos cookies para mejorar tu experiencia. Al continuar, aceptas todas las cookies.</p>
+  <button id="accept-cookies">Aceptar</button>
+</div>
 
   <div class="container">
     <header>
-      <a href="index.html"><img src="WhatsApp Image 2025-09-28 at 3.04.34 AM (1).png" alt="Logo Zantori" style="width:80px;"></a>
+      <div>
+        <a href="index.html">
+    <img src="WhatsApp Image 2025-09-28 at 3.04.34 AM (1).png" alt="Volver al inicio" style="width:80px;">
+       </a>
+      </div>
       <div class="controls">
-        <a href="index.html" class="boton">Inicio</a>
-        <a href="historia.html" class="boton">Historia</a>
-        <input type="search" class="search" placeholder="Buscar: camisetas, hoodies...">
-        <button class="cart-btn" id="cart-btn">🛒 <span class="cart-count">0</span></button>
+         <a href="index.html" class="boton">Inicio</a>
+         <a href="categorias.html" class="boton">Categorías</a>
+         <a href="historia.html" class="boton">Historia</a>
+                 <a href="contacto.html" class="boton">Contacto</a>
+        <button class="cart-btn" id="openCart"> 🛒 <span class="cart-count" id="cartCount">0</span></button>
+        <input class="search" id="search" placeholder="Buscar: camisetas, hoodies..." />
+        <a href="https://www.mediafire.com/file/pqvyo6cc4thj5bt/zantori%255B1%255D.apk/file" 
+   target="_blank" 
+   id="download-app-btn">
+  📲 Descargar App
+</a>
       </div>
     </header>
 
     <main>
-      <div class="product-detail">
-        <div class="product-image-gallery">
-          <div class="main-image">
-            <img src="./might-collection-tee.png" alt="Might Collection Tee">
-          </div>
-          <div class="thumbnail-images">
-            <img src="./might-collection-tee.png" alt="Might Collection Tee Thumbnail 1" class="active">
-            <!-- Add more thumbnails here if available -->
-          </div>
-        </div>
-        <div class="product-info">
-          <h1 id="product-title">Might Collection Tee</h1>
-          <p class="price" id="product-price">$60.000</p>
-          <p class="description" id="product-description">Camiseta oversize premium, algodón 200g, corte relajado y acabado mate. Ideal para un estilo urbano y cómodo.</p>
-          <div class="details">
-            <p><strong>SKU:</strong> <span id="product-sku">MC-BL-01</span></p>
-            <p><strong>Material:</strong> 100% Algodón de 200g</p>
-            <p><strong>Corte:</strong> Oversize, relajado</p>
-            <p><strong>Acabado:</strong> Mate</p>
-            <p><strong>Instrucciones de Cuidado:</strong> Lavar a máquina con agua fría, no usar blanqueador, secar a baja temperatura.</p>
-            <!-- Add size selection, color options here -->
-          </div>
-          <button class="add-to-cart-btn" id="add-to-cart-btn">Agregar al Carrito</button>
-        </div>
-      </div>
+      <section class="grid" id="catalog"></section>
+
+      <section class="empty-state" id="emptyState" style="display:none;text-align:center;padding:40px 0;color:var(--muted)">
+        <h3>No hay productos que coincidan</h3>
+      </section>
     </main>
+    <!-- Redes sociales -->
+<section style="text-align:center; margin:40px 0;">
+  <h3 style="margin-bottom:16px; color:var(--accent); font-size:20px;">Síguenos en nuestras redes</h3>
+  <div style="display:flex; justify-content:center; gap:24px; align-items:center;">
+
+    <!-- WhatsApp -->
+    <a href="https://api.whatsapp.com/send/?phone=%2B573159259531&text&type=phone_number&app_absent=0" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Zantori" style="width:30px; height:30px; border-radius:50%; transition:transform 0.3s;">
+    </a>
+
+    <!-- Instagram -->
+    <a href="https://www.instagram.com/__zantori__" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Instagram_logo_2022.svg" alt="Instagram Zantori" style="width:20px; height:20px; border-radius:50%; transition:transform 0.3s;">
+    </a>
+
+    <!-- TikTok -->
+    <a href="https://www.tiktok.com/@__zantori__" target="_blank">
+      <img src="https://img.freepik.com/premium-vector/tik-tok-glitch-icon-social-media-tik-tok-icon-vinnitsa-ukraine-february-22-02-2023_250246-536.jpg?semt=ais_hybrid&w=740&q=80" alt="TikTok Zantori" style="width:30px; height:30px; border-radius:50%; transition:transform 0.3s;">
+    </a>
+
+  </div>
+</section>
+
+<style>
+  section a:hover img {
+    transform: scale(1.1);
+  }
+</style>
+
 
     <footer>
       © <span id="year"></span> ZANTORI · Minimal luxury streetwear · Hecho con Amor y Pasión ❤
     </footer>
   </div>
 
+  <!-- Cart drawer -->
+ <aside class="drawer" id="drawer">
+  <!-- Botón de cerrar -->
+  <button id="closeDrawer" style="
+    position:absolute; top:12px; right:12px;
+    background: rgba(255,255,255,0.2); border:none;
+    padding:6px 10px; border-radius:8px; cursor:pointer;
+    font-weight:bold; font-size:18px;
+    color: var(--accent);
+    backdrop-filter: blur(5px);
+  ">✕</button>
+
+  <h3>Tu carrito</h3>
+  <div id="cartList"></div>
+  <div id="cartSummary" style="margin-top:12px">
+    <div class="small">Subtotal: <strong id="subtotal">$0</strong></div>
+    <div class="small">Envío: <strong id="shipping">$0</strong></div>
+    <div style="margin-top:8px;font-weight:700">Total: <span id="total">$0</span></div>
+    <div id="checkoutBtn" class="checkout">Pagar</div>
+    <div style="font-size:13px;color:var(--muted);margin-top:8px">
+      Se guardará tu pedido y se abrirá WhatsApp para confirmar.
+    </div>
+  </div>
+</aside>
+
+
+  <!-- Product modal -->
+  <div class="overlay" id="overlay">
+    <div class="modal" role="dialog" aria-modal="true">
+      <div>
+        <div class="gallery-main" id="galleryMain"><img src="" alt=""></div>
+        <div class="gallery-thumbs" id="galleryThumbs"></div>
+      </div>
+      <div>
+        <h2 id="prodTitle">Título</h2>
+        <div class="small" id="prodSku">SKU</div>
+        <div style="margin-top:10px;font-weight:800;font-size:20px" id="prodPrice">$0</div>
+        <p id="prodDesc" style="margin-top:8px;color:var(--muted)"></p>
+
+        <div style="margin-top:12px">
+          <div class="small">Colores</div>
+          <div class="selects" id="colorList"></div>
+        </div>
+
+        <div style="margin-top:12px">
+          <div class="small">Tallas</div>
+          <div class="selects" id="sizeList"></div>
+        </div>
+
+        <div style="margin-top:12px;display:flex;gap:8px;align-items:center">
+          <input id="modalQty" type="number" value="1" min="1" style="width:84px;padding:8px;border-radius:8px;border:1px solid #eee">
+          <button id="modalAdd" class="primary btn">Agregar al carrito</button>
+        </div>
+
+        <button class="btn" id="modalClose" style="margin-top:14px">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Checkout modal -->
+  <div class="overlay" id="overlayCheckout">
+    <div class="modal" role="dialog" aria-modal="true">
+      <div style="grid-column:1/-1">
+        <h3>Confirmar pedido 🛍️</h3>
+        <div class="small">Ingresa tus datos para enviar el pedido📦.</div>
+      </div>
+
+      <div style="grid-column:1/-1;margin-top:10px;display:flex;flex-direction:column;gap:8px">
+        <input id="buyerName" type="text" placeholder="Tu nombre completo">
+        <input id="buyerPhone" type="tel" placeholder="Tu número (ej: 3133350267)">
+        <input id="notes" type="text" placeholder="Observaciones (opcional)">
+      </div>
+
+      <div style="grid-column:1/-1;display:flex;gap:8px;margin-top:12px">
+        <button id="confirmPay" class="primary btn" style="flex:1">Enviar Pedido</button>
+        <button id="cancelPay" class="btn" style="flex:1">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
   <script>
-    // Preloader
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        document.getElementById('preloader').classList.add('hidden');
-      }, 1500); // Cambia el tiempo aquí en ms
-      document.getElementById('year').textContent = new Date().getFullYear();
+    /* ----------------- CONFIG ----------------- */
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwASjrFdcC-OG09AVqQmG4sBq2_Eu-KHEbAjzWrDbPP_-HEgCIW2QbCxFurt2sX7THA/exec';
+    const WHATSAPP_NUMBER = '573159259531'; // +57 3159259531
+    const cookieBanner = document.getElementById('cookie-banner');
+  const acceptBtn = document.getElementById('accept-cookies');
+
+  if (localStorage.getItem('cookiesAccepted')) {
+    cookieBanner.classList.add('hidden');
+  }
+
+  acceptBtn.addEventListener('click', () => {
+    localStorage.setItem('cookiesAccepted', 'true');
+    cookieBanner.classList.add('hidden');
+  });
+
+    /* --------------- PRODUCTOS --------------- */
+    const PRODUCTS = [
+       {
+        id:'p01',
+        title:'Might Collection Tee',
+        sku:'MC-BL-01',
+        price:60000,
+        desc:'Camiseta oversize premium, algodón 200g, corte relajado y acabado mate.',
+        variants:{
+          'Blanca':{label:'Blanca',images:['reborn logo.png', 'Reborn doblada.png','Reborn adelante.png', 'Reborn atras.png', 'Reborn colgada.png', 'Reborn etiqueta.png']},
+        },
+        sizes:['S','M','L']
+      },
+      {
+        id:'p06',
+        title:'Might Collection Tee',
+        sku:'MC-BL-01',
+        price:60000,
+        desc:'Camiseta oversize premium, algodón 200g, corte relajado y acabado mate.',
+        variants:{
+          'Blanca':{label:'Blanca',images:['reborn logo.png', 'Reborn doblada.png','Reborn adelante.png', 'Reborn atras.png', 'Reborn colgada.png', 'Reborn etiqueta.png', 'Reborn persona 1.png', 'Reborn persona 2.png', 'Reborn pareja.png']},
+        },
+        sizes:['S','M','L']
+      },
+      {
+        id:'p05',
+        title:'Might Collection Tee',
+        sku:'MC-BL-01',
+        price:60000,
+        desc:'Camiseta oversize premium, algodón 200g, corte relajado y acabado mate.',
+        variants:{
+          'Blanca':{label:'Blanca',images:['reborn logo.png', 'Reborn doblada.png','Reborn adelante.png', 'Reborn atras.png', 'Reborn colgada.png', 'Reborn etiqueta.png', 'Reborn persona 1.png', 'Reborn persona 2.png', 'Reborn pareja.png']},
+        },
+        sizes:['S','M','L']
+      },
+      {
+        id:'p04',
+        title:'Might Collection Tee',
+        sku:'MC-BL-01',
+        price:60000,
+        desc:'Camiseta oversize premium, algodón 200g, corte relajado y acabado mate.',
+        variants:{
+          'Blanca':{label:'Blanca',images:['reborn logo.png', 'Reborn doblada.png','Reborn adelante.png', 'Reborn atras.png', 'Reborn colgada.png', 'Reborn etiqueta.png', 'Reborn persona 1.png', 'Reborn persona 2.png', 'Reborn pareja.png']},
+        },
+        sizes:['S','M','L']
+      },
+      {
+        id:'p02',
+        title:'Dark Oversize Hoodie',
+        sku:'DO-HD-02',
+        price:120000,
+        desc:'Hoodie oversize con forro interior suave, capucha y costuras reforzadas.',
+        variants:{
+          'Negra':{label:'Negra',images:[
+            'https://i.imgur.com/OrAxYvV.jpeg',
+            'https://i.imgur.com/9vQ1ZxH.jpeg'
+          ]},
+          'Bordo':{label:'Bordo',images:[
+            'https://i.imgur.com/7YlWb3K.jpeg'
+          ]}
+        },
+        sizes:['M','L','XL']
+      },
+      {
+        id:'p03',
+        title:'White Flow Long Tee',
+        sku:'WF-TS-03',
+        price:58000,
+        desc:'Long tee oversize con caída fluida, ideal para layering.',
+        variants:{
+          'Blanca':{label:'Blanca',images:[
+            'https://i.imgur.com/rPwFZab.jpeg',
+            'https://i.imgur.com/3Kq1o1L.jpeg'
+          ]},
+          'Gris':{label:'Gris',images:[
+            'https://i.imgur.com/0oX7s6k.jpeg'
+          ]}
+        },
+        sizes:['S','M','L']
+      }
+    ];
+    /* ------------- Drawer animado ------------- */
+document.addEventListener('DOMContentLoaded', function() {
+  const drawer = $('drawer');
+  const openCartBtn = $('openCart');
+
+  // Crear botón de cerrar si no existe
+  let closeBtn = drawer.querySelector('#closeDrawer');
+  if(!closeBtn){
+    closeBtn = document.createElement('button');
+    closeBtn.id = 'closeDrawer';
+    closeBtn.textContent = '✕';
+    closeBtn.style.cssText = `
+      position:absolute;
+      top:12px;
+      right:12px;
+      background:none;
+      border:none;
+      font-size:20px;
+      cursor:pointer;
+    `;
+    drawer.appendChild(closeBtn);
+  }
+
+  // Abrir drawer
+  openCartBtn.addEventListener('click', () => drawer.classList.add('open'));
+
+  // Cerrar drawer con botón
+  closeBtn.addEventListener('click', () => drawer.classList.remove('open'));
+
+  // Cerrar drawer al hacer clic fuera
+  document.addEventListener('click', (e) => {
+    if(drawer.classList.contains('open') && !drawer.contains(e.target) && e.target !== openCartBtn){
+      drawer.classList.remove('open');
+    }
+  });
+
+  // Cerrar drawer con ESC
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape' && drawer.classList.contains('open')){
+      drawer.classList.remove('open');
+    }
+  });
+});
+
+    /* ------------- Utilities ------------- */
+    const $ = id => document.getElementById(id);
+    const formatCOP = n => '$' + Number(n).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+
+    /* ------------- Catalog render ------------- */
+    const catalogEl = $('catalog');
+    const emptyState = $('emptyState');
+
+    
+
+    function renderCatalog(list){
+      catalogEl.innerHTML = '';
+      if(!list.length){ emptyState.style.display='block'; return; }
+      emptyState.style.display='none';
+      list.forEach(p=>{
+        const card = document.createElement('div'); card.className='card';
+        const thumb = document.createElement('div'); thumb.className='thumb';
+        const firstColor = Object.keys(p.variants)[0];
+        const firstImg = p.variants[firstColor].images[0];
+        const img = document.createElement('img'); img.src = firstImg; img.alt = p.title;
+        thumb.appendChild(img);
+        const title = document.createElement('div'); title.className='title'; title.textContent = p.title;
+        const sku = document.createElement('div'); sku.className='meta'; sku.textContent = p.sku;
+        const price = document.createElement('div'); price.className='price'; price.textContent = formatCOP(p.price);
+        const desc = document.createElement('div'); desc.className='small'; desc.textContent = p.desc;
+        const row = document.createElement('div'); row.className='row';
+        const view = document.createElement('button'); view.className='btn'; view.textContent='Ver';
+        view.onclick = ()=> openProductModal(p.id);
+        const add = document.createElement('button'); add.className='btn primary'; add.textContent='Agregar';
+        add.onclick = (e)=> { e.stopPropagation(); quickAdd(p.id); };
+        row.appendChild(view); row.appendChild(add);
+        card.appendChild(thumb); card.appendChild(title); card.appendChild(sku); card.appendChild(price); card.appendChild(desc); card.appendChild(row);
+        card.onclick = ()=> openProductModal(p.id);
+        catalogEl.appendChild(card);
+      });
+    }
+
+    /* ------------- Cart (localStorage) ------------- */
+    let cart = JSON.parse(localStorage.getItem('z_cart_vz')||'{}');
+    function saveCart(){ localStorage.setItem('z_cart_vz', JSON.stringify(cart)); renderCart(); updateCount(); }
+
+    function quickAdd(productId){
+      const p = PRODUCTS.find(x=>x.id===productId);
+      const color = Object.keys(p.variants)[0];
+      const size = (p.sizes && p.sizes[0]) || 'M';
+      const key = `${productId}::${color}::${size}`;
+      cart[key] = (cart[key]||0) + 1;
+      saveCart(); showToast('Añadido al carrito');
+    }
+    function addToCartVariant(productId, color, size, qty=1){
+      const key = `${productId}::${color}::${size}`;
+      cart[key] = (cart[key]||0) + qty;
+      saveCart(); showToast('Añadido al carrito');
+    }
+
+    function removeFromCart(key){ delete cart[key]; saveCart(); }
+    function changeQty(key, qty){ if(qty<=0) removeFromCart(key); else { cart[key]=qty; saveCart(); } }
+
+    function cartItems(){
+      return Object.keys(cart).map(key=>{
+        const [pid,color,size] = key.split('::');
+        const p = PRODUCTS.find(x=>x.id===pid) || {title:'Producto',price:0,sku:'-'};
+        return { key, pid, title:p.title, sku:p.sku, color, size, qty:cart[key], price:p.price, line:p.price*cart[key], img:p.variants[color]?.images?.[0]||'' };
+      });
+    }
+    
+
+   function renderCart(){
+  const list = $('cartList'); 
+  list.innerHTML='';
+
+  const items = cartItems();
+
+  // Si el carrito está vacío
+  if(!items.length){ 
+    list.innerHTML = '<div style="padding:20px;color:var(--muted)">Tu carrito está vacío.</div>'; 
+    $('subtotal').textContent='$0'; 
+    $('shipping').textContent='$0'; 
+    $('total').textContent='$0'; 
+    let discountEl = $('discount');
+    if(discountEl) discountEl.textContent = '';
+    return; 
+  }
+
+  let subtotal = 0;
+  let totalQty = 0;
+
+  items.forEach(it=>{
+    subtotal += it.line;
+    totalQty += it.qty;
+
+    const row = document.createElement('div'); 
+    row.className='cart-item';
+
+    const th = document.createElement('div'); 
+    th.className='thumb-sm';
+    if(it.img){ 
+      const im = document.createElement('img'); 
+      im.src = it.img; 
+      th.appendChild(im); 
+    } else { 
+      th.textContent = it.title; 
+    }
+
+    const info = document.createElement('div'); 
+    info.style.flex='1';
+
+    const t = document.createElement('div'); 
+    t.textContent = it.title; 
+    t.style.fontWeight='600';
+
+    const s = document.createElement('div'); 
+    s.className='small'; 
+    s.textContent = `${it.color} • Talla ${it.size} • ${formatCOP(it.price)} c/u`;
+
+    const qty = document.createElement('div'); 
+    qty.className='qty';
+    const minus = document.createElement('button'); 
+    minus.textContent='-'; 
+    minus.onclick = ()=> changeQty(it.key, it.qty-1);
+    const qText = document.createElement('div'); 
+    qText.textContent = it.qty; 
+    qText.style.minWidth='22px'; 
+    qText.style.textAlign='center';
+    const plus = document.createElement('button'); 
+    plus.textContent='+'; 
+    plus.onclick = ()=> changeQty(it.key, it.qty+1);
+    qty.appendChild(minus); 
+    qty.appendChild(qText); 
+    qty.appendChild(plus);
+
+    const remove = document.createElement('button'); 
+    remove.textContent='Eliminar'; 
+    remove.style.marginLeft='8px'; 
+    remove.onclick = ()=> removeFromCart(it.key);
+
+    info.appendChild(t); 
+    info.appendChild(s); 
+    info.appendChild(qty);
+    row.appendChild(th); 
+    row.appendChild(info); 
+    row.appendChild(remove);
+    list.appendChild(row);
+  });
+
+  // ------------------ Descuento ------------------
+  let discount = 0;
+  if(totalQty >= 6){ 
+    discount = subtotal * 0.10; // 10% de descuento
+  }
+
+  const shipping = subtotal > 0 ? 8000 : 0;
+  const totalWithDiscount = subtotal - discount + shipping;
+
+  $('subtotal').textContent = formatCOP(subtotal);
+  $('shipping').textContent = formatCOP(shipping);
+  $('total').textContent = formatCOP(totalWithDiscount);
+
+  // Mostrar descuento en el carrito
+  let discountEl = $('discount');
+  if(!discountEl){
+    discountEl = document.createElement('div');
+    discountEl.id = 'discount';
+    discountEl.style.fontSize = '13px';
+    discountEl.style.color = 'var(--muted)';
+    discountEl.style.marginTop = '4px';
+    $('cartSummary').insertBefore(discountEl, $('total').parentNode);
+  }
+  discountEl.textContent = discount > 0 ? `Descuento 10%: -${formatCOP(discount)}` : '';
+}
+
+    function updateCount(){ const count = Object.values(cart).reduce((a,b)=>a+b,0); $('cartCount').textContent = count; }
+
+    /* ------------- Product modal ------------- */
+    const overlay = $('overlay');
+    const galleryMain = $('galleryMain');
+    const galleryThumbs = $('galleryThumbs');
+    const prodTitle = $('prodTitle');
+    const prodSku = $('prodSku');
+    const prodPrice = $('prodPrice');
+    const prodDesc = $('prodDesc');
+    const colorListEl = $('colorList');
+    const sizeListEl = $('sizeList');
+    const modalQty = $('modalQty');
+    const modalAdd = $('modalAdd');
+    const modalClose = $('modalClose');
+
+    let currentProduct = null;
+    let currentColor = null;
+    let currentSize = null;
+    let currentGalleryImages = [];
+
+    function openProductModal(productId){
+      const p = PRODUCTS.find(x=>x.id===productId); if(!p) return;
+      currentProduct = p;
+      prodTitle.textContent = p.title;
+      prodSku.textContent = p.sku;
+      prodPrice.textContent = formatCOP(p.price);
+      prodDesc.textContent = p.desc || '';
+      galleryThumbs.innerHTML = '';
+      const variantKeys = Object.keys(p.variants);
+      currentColor = variantKeys[0];
+      currentGalleryImages = p.variants[currentColor].images.slice();
+      setGallery(currentGalleryImages);
+      colorListEl.innerHTML = '';
+      variantKeys.forEach(c=>{
+        const btn = document.createElement('button'); btn.className='chip'; btn.textContent = c;
+        if(c===currentColor) btn.classList.add('active');
+        btn.onclick = ()=> { selectColor(c); };
+        colorListEl.appendChild(btn);
+      });
+      sizeListEl.innerHTML = '';
+      (p.sizes||['M','L']).forEach(sz=>{
+        const b = document.createElement('button'); b.className='chip'; b.textContent = sz;
+        if(sz=== (p.sizes && p.sizes[0])){ b.classList.add('active'); currentSize = sz; }
+        b.onclick = ()=> { document.querySelectorAll('#sizeList .chip').forEach(x=>x.classList.remove('active')); b.classList.add('active'); currentSize = sz; };
+        sizeListEl.appendChild(b);
+      });
+      modalQty.value = 1;
+      overlay.classList.add('open');
+    }
+
+    function selectColor(c){
+      if(!currentProduct) return;
+      currentColor = c;
+      document.querySelectorAll('#colorList .chip').forEach(x=> x.textContent===c ? x.classList.add('active') : x.classList.remove('active'));
+      currentGalleryImages = currentProduct.variants[c].images.slice();
+      setGallery(currentGalleryImages);
+    }
+
+    function setGallery(images){
+      galleryMain.innerHTML = '';
+      galleryThumbs.innerHTML = '';
+      const m = document.createElement('img'); m.src = images[0]; galleryMain.appendChild(m);
+      images.forEach((src, idx)=>{
+        const t = document.createElement('img'); t.src = src;
+        if(idx===0) t.classList.add('active');
+        t.onclick = ()=> { galleryMain.innerHTML=''; const im=document.createElement('img'); im.src=src; galleryMain.appendChild(im); document.querySelectorAll('#galleryThumbs img').forEach(x=>x.classList.remove('active')); t.classList.add('active'); };
+        galleryThumbs.appendChild(t);
+      });
+    }
+
+    modalAdd.addEventListener('click', ()=>{
+      if(!currentProduct) return;
+      const qty = parseInt(modalQty.value) || 1;
+      const sizeButtons = document.querySelectorAll('#sizeList .chip');
+      if(!currentColor){ alert('Selecciona un color'); return; }
+      if(!currentSize){
+        const active = Array.from(sizeButtons).find(b=>b.classList.contains('active'));
+        if(active) currentSize = active.textContent;
+        else { alert('Selecciona una talla'); return; }
+      }
+      addToCartVariant(currentProduct.id, currentColor, currentSize, qty);
+      overlay.classList.remove('open');
     });
 
-    // Basic Add to Cart functionality (client-side, for demonstration)
-    document.getElementById('add-to-cart-btn').addEventListener('click', () => {
-      alert('Producto agregado al carrito (funcionalidad básica).');
-      // In a real application, this would update a cart object in localStorage or send data to a server
+    modalClose.addEventListener('click', ()=> overlay.classList.remove('open'));
+    overlay.addEventListener('click', (e)=> { if(e.target===overlay) overlay.classList.remove('open'); });
+
+    /* ------------- Checkout flow ------------- */
+    const overlayCheckout = $('overlayCheckout');
+    $('checkoutBtn').addEventListener('click', ()=> {
+      const items = cartItems();
+      if(!items.length){ alert('Tu carrito está vacío'); return; }
+      overlayCheckout.classList.add('open');
     });
+    $('cancelPay').addEventListener('click', ()=> overlayCheckout.classList.remove('open'));
+
+$('confirmPay').addEventListener('click', async ()=> {
+  const name = $('buyerName').value.trim();
+  const phone = $('buyerPhone').value.trim();
+  const notes = $('notes').value.trim();
+  if(!name || !phone){ alert('Por favor ingresa nombre y teléfono.'); return; }
+
+  const items = cartItems();
+  if(!items.length){ alert('Tu carrito está vacío'); return; }
+
+  const now = new Date();
+  const pad = n=>n.toString().padStart(2,'0');
+  const orderId = 'ZANTORI-' + now.getFullYear() + pad(now.getMonth()+1) + pad(now.getDate()) + pad(now.getHours()) + pad(now.getMinutes()) + pad(now.getSeconds());
+  const dateStr = pad(now.getDate()) + '/' + pad(now.getMonth()+1) + '/' + now.getFullYear();
+  const timeStr = pad(now.getHours()) + ':' + pad(now.getMinutes()) + ':' + pad(now.getSeconds());
+
+  // ------------------ Cálculo de subtotal y descuento ------------------
+  let subtotal = items.reduce((s,i)=> s + i.line, 0);
+  let totalQty = items.reduce((q,i)=> q + i.qty, 0);
+  let discount = totalQty >= 6 ? subtotal * 0.10 : 0;
+  const shipping = subtotal > 0 ? 8000 : 0;
+  const total = subtotal - discount + shipping;
+
+  // ------------------ Payload para Apps Script ------------------
+  const payload = {
+    orderId,
+    fecha: dateStr,
+    hora: timeStr,
+    nombre: name,
+    telefono: phone,
+    productos: items.map(it => ({ title: it.title, sku: it.sku, qty: it.qty, size: it.size, color: it.color, price: it.price })),
+    subtotal,
+    discount,
+    shipping,
+    total,
+    notas: notes
+  };
+
+  try {
+    await fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      body: JSON.stringify(payload)
+    });
+    console.log('Pedido enviado (no-cors).');
+  } catch (e) {
+    console.warn('Error enviando a Google Sheets:', e);
+  }
+
+  // ------------------ Preparar mensaje WhatsApp ------------------
+  const lines = [];
+  lines.push('¡Hola! Vengo de la página ZANTORI 🖤');
+  lines.push('');
+  lines.push(`Número de pedido: ${orderId}`);
+  lines.push(`Fecha: ${dateStr}  Hora: ${timeStr}`);
+  lines.push('');
+  lines.push('Información del cliente');
+  lines.push(`Nombre: ${name}`);
+  lines.push(`Teléfono: ${phone}`);
+  if(notes) lines.push(`Observaciones: ${notes}`);
+  lines.push('');
+  lines.push('Pedido:');
+  items.forEach(it=> {
+    lines.push(`- ${it.qty} × ${it.title} — Talla ${it.size} — Color ${it.color} — ${formatCOP(it.price)} c/u`);
+  });
+  lines.push('');
+  lines.push(`Subtotal: ${formatCOP(subtotal)}`);
+  if(discount > 0) lines.push(`Descuento 10%: -${formatCOP(discount)}`);
+  lines.push(`Envío: ${formatCOP(shipping)}`);
+  lines.push(`Total a pagar: ${formatCOP(total)}`);
+  lines.push('');
+  lines.push('Envía este mensaje para crear tu pedido.');
+
+  const text = encodeURIComponent(lines.join('\n'));
+
+  // ------------------ Limpiar carrito y cerrar overlays ------------------
+  cart = {}; 
+  saveCart(); 
+  overlayCheckout.classList.remove('open'); 
+  drawer.classList.remove('open');
+
+  window.location.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
+});
+
+
+    /* ------------- Search & init ------------- */
+    $('search').addEventListener('input', e=>{
+      const q = e.target.value.trim().toLowerCase();
+      const filtered = PRODUCTS.filter(p => (p.title + ' ' + p.sku + ' ' + Object.keys(p.variants).join(' ')).toLowerCase().includes(q));
+      renderCatalog(filtered);
+    });
+
+    const drawer = $('drawer');
+    $('openCart').addEventListener('click', ()=> drawer.classList.toggle('open'));
+
+    /* ------------- Toast helper ------------- */
+    function showToast(msg){
+      const t = document.createElement('div');
+      t.textContent = msg;
+      t.style.position='fixed'; t.style.left='50%'; t.style.transform='translateX(-50%)'; t.style.bottom='24px';
+      t.style.padding='8px 12px'; t.style.background= 'var(--accent)'; t.style.color='#fff'; t.style.borderRadius='8px'; t.style.zIndex=9999;
+      document.body.appendChild(t);
+      setTimeout(()=> t.style.opacity='0',1600); setTimeout(()=> t.remove(),2000);
+    }
+
+    /* initialize */
+    document.getElementById('year').textContent = new Date().getFullYear();
+    renderCatalog(PRODUCTS);
+    renderCart();
+    updateCount();
+    window._PRODUCTS = PRODUCTS;
+    window._CART = ()=>cart;
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.getElementById('preloader').classList.add('hidden');
+    }, 1500); // Cambia el tiempo en ms si quieres más o menos duración
+  });
+</script>
+
+    
   </script>
+
+  <!-- NOTE:
+       • Si quieres leer la respuesta del Apps Script desde el frontend (en vez de usar no-cors),
+         habilita CORS en tu script o publica con CORS permitido y quita mode:'no-cors'.
+       • Reemplaza imágenes y textos por los tuyos cuando quieras.
+  -->
 </body>
 </html>
