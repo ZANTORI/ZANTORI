@@ -5,30 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
   <title>ZANTORI — Minimal Luxury Oversize</title>
   <meta name="description" content="ZANTORI - Minimal luxury oversize clothing shop" />
-  <link rel="stylesheet" href="index.css" /> <!-- si lo tienes externo -->
   <style>
-#download-app-btn {
-  position: fixed;
-  bottom: 25px;
-  right: 25px;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(12px);
-  color: rgb(3, 3, 3);
-  text-decoration: none;
-  font-weight: 600;
-  font-family: 'Poppins', sans-serif;
-  padding: 14px 22px;
-  border-radius: 50px;
-  box-shadow: 0 4px 25px rgba(0,0,0,0.25);
-  border: 1px solid rgba(8, 8, 8, 0.2);
-  transition: all 0.3s ease;
-  z-index: 1000;
-}
-
-#download-app-btn:hover {
-  background: rgba(255, 255, 255, 0.25);
-  transform: scale(1.05);
-}
   #cookie-banner {
     position: fixed;
     bottom: 20px;
@@ -123,7 +100,12 @@
       --muted:#8b857b;
       --accent:#1f1a17;
       --glass:rgba(31,26,23,0.06);
+      --glass-light:rgba(255,255,255,0.1);
+      --glass-dark:rgba(0,0,0,0.1);
+      --translucent-white:rgba(255,255,255,0.2);
+      --translucent-black:rgba(0,0,0,0.2);
       --radius:12px;
+      --radius-lg:16px;
     }
     body{
       margin:0;
@@ -133,7 +115,27 @@
     }
     .container{max-width:1150px;margin:auto;padding:0 20px;}
     header{display:flex;justify-content:space-between;align-items:center;padding:20px 0;}
-    .boton{border:1px solid #000;border-radius:8px;padding:6px 10px;background:transparent;color:#000;text-decoration:none;font-weight:500;margin-left:6px;}
+    .boton{
+      border:1px solid var(--accent);
+      border-radius:var(--radius);
+      padding:8px 16px;
+      background:var(--translucent-white);
+      backdrop-filter:blur(10px);
+      color:var(--accent);
+      text-decoration:none;
+      font-weight:600;
+      margin-left:12px;
+      margin-right:0;
+      display:inline-block;
+      transition:all 0.3s ease;
+      box-shadow:0 2px 8px rgba(0,0,0,0.1);
+    }
+    .boton:hover{
+      background:var(--translucent-black);
+      color:#fff;
+      transform:translateY(-2px);
+      box-shadow:0 4px 12px rgba(0,0,0,0.2);
+    }
     .hero{
       text-align:center;
       padding:80px 20px;
@@ -143,17 +145,125 @@
     .hero p{max-width:600px;margin:auto;color:var(--muted);font-size:1.1em;}
     h2.section-title{text-align:center;margin:50px 0 20px;font-weight:700;}
     .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px;margin-bottom:60px;}
-    .card{background:var(--card);border-radius:var(--radius);padding:16px;border:1px solid var(--glass);
-      box-shadow:0 8px 24px rgba(31,26,23,0.05);text-align:center;transition:all .2s ease;cursor:pointer;}
-    .card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(31,26,23,0.08);}
+    .card{
+      background:var(--translucent-white);
+      backdrop-filter:blur(15px);
+      border-radius:var(--radius-lg);
+      padding:20px;
+      border:1px solid var(--glass-light);
+      box-shadow:0 8px 32px rgba(31,26,23,0.1);
+      text-align:center;
+      transition:all 0.3s ease;
+      cursor:pointer;
+    }
+    .card:hover{
+      transform:translateY(-5px);
+      box-shadow:0 16px 48px rgba(31,26,23,0.15);
+      background:var(--translucent-white);
+    }
     .thumb{height:280px;border-radius:10px;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#f6f3f0;}
     .thumb img{width:100%;height:100%;object-fit:cover;}
     .title{font-weight:700;margin-top:10px;font-size:16px;}
     .price{font-weight:800;margin:4px 0;}
     .small{font-size:14px;color:var(--muted);}
-    .btn{padding:6px 12px;border-radius:8px;border:1px solid var(--accent);background:transparent;cursor:pointer;margin-top:8px;}
-    .primary{background:var(--accent);color:white;}
+    .btn{
+      padding:10px 20px;
+      border-radius:var(--radius);
+      border:1px solid var(--accent);
+      background:var(--translucent-white);
+      backdrop-filter:blur(10px);
+      cursor:pointer;
+      margin-top:12px;
+      font-weight:600;
+      transition:all 0.3s ease;
+      box-shadow:0 2px 8px rgba(0,0,0,0.1);
+    }
+    .btn:hover{
+      transform:translateY(-2px);
+      box-shadow:0 4px 12px rgba(0,0,0,0.2);
+    }
+    .primary{
+      background:var(--accent);
+      color:white;
+      border-color:var(--accent);
+    }
+    .primary:hover{
+      background:var(--muted);
+      border-color:var(--muted);
+    }
     footer{text-align:center;color:var(--muted);padding:40px 0;font-size:14px;}
+  
+  /* Shopping Cart Styles */
+  .cart-overlay{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background:var(--translucent-black);
+    backdrop-filter:blur(5px);
+    z-index:1000;
+    display:none;
+    justify-content:center;
+    align-items:center;
+  }
+  .cart-modal{
+    background:var(--translucent-white);
+    backdrop-filter:blur(20px);
+    border-radius:var(--radius-lg);
+    padding:24px;
+    max-width:400px;
+    width:90%;
+    max-height:80vh;
+    overflow-y:auto;
+    box-shadow:0 16px 48px rgba(0,0,0,0.2);
+  }
+  .cart-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+    padding-bottom:16px;
+    border-bottom:1px solid var(--glass-light);
+  }
+  .cart-item{
+    display:flex;
+    align-items:center;
+    padding:12px 0;
+    border-bottom:1px solid var(--glass-light);
+  }
+  .cart-item img{
+    width:60px;
+    height:60px;
+    object-fit:cover;
+    border-radius:8px;
+    margin-right:12px;
+  }
+  .cart-item-info{
+    flex:1;
+  }
+  .cart-item-title{
+    font-weight:600;
+    margin-bottom:4px;
+  }
+  .cart-item-price{
+    color:var(--muted);
+    font-size:14px;
+  }
+  .cart-total{
+    margin-top:20px;
+    padding-top:16px;
+    border-top:1px solid var(--glass-light);
+    font-weight:700;
+    font-size:18px;
+  }
+  .close-cart{
+    background:none;
+    border:none;
+    font-size:24px;
+    cursor:pointer;
+    color:var(--muted);
+  }
   </style>
 </head>
 <body>
@@ -169,12 +279,10 @@
       <div>
         <a href="index.html" class="boton">Inicio</a>
         <a href="categorias.html" class="boton">Categorías</a>
+        <a href="ofertas.html" class="boton">Ofertas</a>
         <a href="historia.html" class="boton">Historia</a>
-        <a href="https://www.mediafire.com/file/pqvyo6cc4thj5bt/zantori%255B1%255D.apk/file" 
-   target="_blank" 
-   id="download-app-btn">
-  📲 Descargar App
-</a>
+        <a href="editorial.html" class="boton">Editorial</a>
+        <a href="contacto.html" class="boton">Contacto</a>
       </div>
     </header>
 
@@ -189,21 +297,21 @@
     <h2 class="section-title">Explora nuestras colecciones</h2>
     <section class="grid">
       <div class="card" onclick="window.location.href='camisetas.html'">
-        <div class="thumb"><img src="img/camisetas.jpg" alt="Camisetas"></div>
+        <div class="thumb"><img src="logo.png" alt="Camisetas"></div>
         <div class="title">Inspiration Collection I</div>
         <div class="small">Colección premium en algodón 200g con cortes relajados.</div>
       </div>
 
       <div class="card" onclick="window.location.href='Collection II.html'">
-        <div class="thumb"><img src="img/hoodies.jpg" alt="⚠️Proximo⚠️"></div>
-        <div class="title">En Contruccion</div>
-        <div class="small">Confort y diseño en una prenda versátil de lujo urbano.</div>
+        <div class="thumb"><img src="próximamente.png" alt="⚠️próximamente⚠️"></div>
+        <div class="title">⚠️próximamente⚠️</div>
+        <div class="small"></div>
       </div>
 
       <div class="card" onclick="window.location.href='index.html'">
-        <div class="thumb"><img src="img/accesorios.jpg" alt="⚠️Proximo⚠️"></div>
-        <div class="title">Accesorios</div>
-        <div class="small">Detalles que elevan tu estilo y completan el look ZANTORI.</div>
+        <div class="thumb"><img src="próximamente.png" alt="⚠️próximamente⚠️"></div>
+        <div class="title">⚠️próximamente⚠️</div>
+        <div class="small"></div>
       </div>
     </section>
 
@@ -213,8 +321,23 @@
 
     <!-- Footer -->
     <footer>
-      © <span id="2025"></span> ZANTORI · Minimal luxury streetwear
+      © <span id="year"></span> ZANTORI · Minimal luxury streetwear
     </footer>
+  </div>
+
+  <!-- Shopping Cart Overlay -->
+  <div id="cart-overlay" class="cart-overlay">
+    <div class="cart-modal">
+      <div class="cart-header">
+        <h3>🛒 Carrito de Compras</h3>
+        <button class="close-cart" onclick="closeCart()">&times;</button>
+      </div>
+      <div id="cart-items"></div>
+      <div class="cart-total" id="cart-total">Total: $0</div>
+      <button class="btn primary" style="width:100%;margin-top:16px;" onclick="checkout()">
+        Proceder al Pago
+      </button>
+    </div>
   </div>
 
 <script>
@@ -231,7 +354,7 @@
   const destacados = [
     {
       id: 'reborn',
-      title: 'Reborn Oversize Tee',
+      title: 'REBORN // The Awakening',
       price: 60000,
       desc: 'Camiseta oversize premium, corte relajado, acabado mate.',
       img: 'Reborn adelante.png',
@@ -239,18 +362,18 @@
     },
     {
       id: 'darkflow',
-      title: 'Dark Flow Tee',
-      price: 58000,
+      title: 'AGONY // Synthetic Pain',
+      price: 60000,
       desc: 'Camiseta fluida, ideal para outfits urbanos y minimalistas.',
-      img: 'Reborn colgada.png',
+      img: 'agony adelante.png',
       link: 'camisetas.html'
     },
     {
       id: 'collection2',
-      title: '⚠️Proximo⚠️',
+      title: '⚠️próximamente⚠️',
       price: 0,
       desc: '',
-      img: 'collection2.png',
+      img: 'próximamente.png',
       link: 'index.html' // ⚡ aquí lleva a su propia página
     }
   ];
@@ -267,12 +390,124 @@
       <div class="title">${p.title}</div>
       <div class="small">${p.desc}</div>
       <div class="price">${formatCOP(p.price)}</div>
-      <button class="btn primary" onclick="window.location.href='${p.link}'">Ver producto</button>
+      <div style="display:flex;gap:8px;margin-top:12px;">
+        <button class="btn primary" onclick="addToCart('${p.id}', '${p.title}', ${p.price}, '${p.img}')" style="flex:1;">
+          🛒 Agregar
+        </button>
+        <button class="btn" onclick="window.location.href='${p.link}'" style="flex:1;">
+          Ver detalles
+        </button>
+      </div>
     `;
     grid.appendChild(card);
   });
 
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  // 🛒 Shopping Cart Functionality
+  let cart = [];
+  
+  function addToCart(id, title, price, img) {
+    const existingItem = cart.find(item => item.id === id);
+    if (existingItem) {
+      existingItem.quantity += 1;
+    } else {
+      cart.push({
+        id: id,
+        title: title,
+        price: price,
+        img: img,
+        quantity: 1
+      });
+    }
+    updateCartDisplay();
+    showCartNotification();
+  }
+  
+  function removeFromCart(productId) {
+    cart = cart.filter(item => item.id !== productId);
+    updateCartDisplay();
+  }
+  
+  function updateCartDisplay() {
+    const cartItems = document.getElementById('cart-items');
+    const cartTotal = document.getElementById('cart-total');
+    
+    if (cart.length === 0) {
+      cartItems.innerHTML = '<p style="text-align:center;color:var(--muted);padding:20px;">Tu carrito está vacío</p>';
+      cartTotal.textContent = 'Total: $0';
+      return;
+    }
+    
+    cartItems.innerHTML = cart.map(item => `
+      <div class="cart-item">
+        <img src="${item.img}" alt="${item.title}">
+        <div class="cart-item-info">
+          <div class="cart-item-title">${item.title}</div>
+          <div class="cart-item-price">${formatCOP(item.price)} x ${item.quantity}</div>
+        </div>
+        <button onclick="removeFromCart('${item.id}')" style="background:none;border:none;color:var(--muted);cursor:pointer;">🗑️</button>
+      </div>
+    `).join('');
+    
+    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    cartTotal.textContent = `Total: ${formatCOP(total)}`;
+  }
+  
+  function showCart() {
+    document.getElementById('cart-overlay').style.display = 'flex';
+    updateCartDisplay();
+  }
+  
+  function closeCart() {
+    document.getElementById('cart-overlay').style.display = 'none';
+  }
+  
+  function checkout() {
+    if (cart.length === 0) {
+      alert('Tu carrito está vacío');
+      return;
+    }
+    
+    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    const message = `¡Hola! Quiero comprar:\n\n${cart.map(item => 
+      `${item.title} x${item.quantity} - ${formatCOP(item.price * item.quantity)}`
+    ).join('\n')}\n\nTotal: ${formatCOP(total)}`;
+    
+    const whatsappUrl = `https://wa.me/573001234567?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+  }
+  
+  function showCartNotification() {
+    // Crear notificación temporal
+    const notification = document.createElement('div');
+    notification.style.cssText = `
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--translucent-white);
+      backdrop-filter: blur(10px);
+      padding: 12px 20px;
+      border-radius: var(--radius);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      z-index: 1001;
+      font-weight: 600;
+      color: var(--accent);
+    `;
+    notification.textContent = '✅ Producto agregado al carrito';
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+      notification.remove();
+    }, 3000);
+  }
+  
+  // Cerrar carrito al hacer clic fuera
+  document.getElementById('cart-overlay').addEventListener('click', function(e) {
+    if (e.target === this) {
+      closeCart();
+    }
+  });
 </script>
 
 </body>
