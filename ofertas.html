@@ -42,25 +42,27 @@
   }
   .controls a.boton{
     display: inline-block;
-    padding: 8px 16px;
-    background: var(--translucent-white);
+    padding: 10px 18px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05));
     backdrop-filter: blur(10px);
     color: var(--accent);
     text-decoration: none;
     border-radius: var(--radius);
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 600;
     margin-left: 12px;
     margin-right: 0;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    border: 1px solid var(--accent);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2), inset 0 1px 0 rgba(255,255,255,0.2);
+    border: 2px solid var(--accent);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
   }
   .controls a.boton:hover {
-    background: var(--translucent-black);
+    background: linear-gradient(135deg, var(--accent), rgba(212, 175, 55, 0.9));
     color: #fff;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(212, 175, 55, 0.5), inset 0 1px 0 rgba(255,255,255,0.3);
   }
 
   /* Ofertas */
@@ -267,6 +269,8 @@
 </style>
 </head>
 <body>
+  <link rel="icon" type="image/png" href="WhatsApp Image 2025-09-28 at 3.04.34 AM (2).png">
+
   <!-- Preloader -->
   <div id="preloader">
     <div class="spinner-circle">

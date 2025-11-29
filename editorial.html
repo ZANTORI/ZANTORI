@@ -17,11 +17,35 @@
     --translucent-black: rgba(0,0,0,0.2);
     --radius: 12px;
   }
+  /* Dark theme disabled visually: use same variables as default theme so colors remain normal */
+  :root[data-theme="dark"], [data-theme="dark"] {
+    --bg: #f5f2ee;
+    --card: #ffffff;
+    --muted: #8b857b;
+    --accent: #1f1a17;
+    --glass: rgba(31,26,23,0.06);
+    --glass-light: rgba(255,255,255,0.1);
+    --translucent-white: rgba(255,255,255,0.2);
+    --translucent-black: rgba(0,0,0,0.2);
+  }
+  /* If the user has system dark mode, still keep the normal colors (prevents auto darkening) */
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) {
+      --bg: #f5f2ee;
+      --card: #ffffff;
+      --muted: #8b857b;
+      --accent: #1f1a17;
+      --glass: rgba(31,26,23,0.06);
+      --glass-light: rgba(255,255,255,0.1);
+      --translucent-white: rgba(255,255,255,0.2);
+      --translucent-black: rgba(0,0,0,0.2);
+    }
+  }
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%}
   body{
     font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    background: linear-gradient(180deg,var(--bg),#efeae3);
+    background: var(--bg);
     color:var(--accent);
     -webkit-font-smoothing:antialiased;
     -moz-osx-font-smoothing:grayscale;
@@ -50,7 +74,7 @@
     font-size: 16px;
     font-weight: 600;
     margin-left: 12px;
-    margin-right: 0;
+    margin-right: 8px;
     transition: all 0.3s ease;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     border: 1px solid var(--accent);
@@ -61,6 +85,23 @@
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   }
+  /* Theme toggle button styles (uses same visual style) */
+  .theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    font-size: 16px;
+    background: var(--translucent-white);
+    color: var(--accent);
+    border-radius: 10px;
+    border: 1px solid var(--accent);
+    cursor: pointer;
+    transition: transform .15s ease, background .15s ease;
+  }
+  .theme-toggle:hover { transform: translateY(-2px); }
 
   /* Editorial */
   .editorial-content {
@@ -79,14 +120,14 @@
     color: white;
   }
 
-  .hero-image {
+  .hero-video {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    z-index: -1;
+    z-index: 0;
   }
 
   .hero-overlay {
@@ -95,7 +136,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(45deg, rgba(0,0,0,0.4), rgba(0,0,0,0.2));
+    background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.5), rgba(0,0,0,0.7));
     z-index: 1;
   }
 
@@ -139,11 +180,32 @@
     position: relative;
   }
 
+  .section-elegant {
+    background: linear-gradient(135deg, rgba(31,26,23,0.05), rgba(255,255,255,0.5));
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(31,26,23,0.1);
+    border-bottom: 1px solid rgba(31,26,23,0.1);
+    margin: 40px 0;
+    border-radius: 12px;
+  }
+
   .section-image {
     width: 100%;
     height: 60vh;
     object-fit: cover;
+    object-position: top;
     border-radius: 0;
+  }
+
+  .section-image-large {
+    width: 65%;
+    height: 80vh;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 12px;
+    margin: 0 auto 40px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    border: 1px solid rgba(31,26,23,0.1);
   }
 
   .section-content {
@@ -280,6 +342,8 @@
 </style>
 </head>
 <body>
+  <link rel="icon" type="image/png" href="WhatsApp Image 2025-09-28 at 3.04.34 AM (2).png">
+
   <!-- Preloader -->
   <div id="preloader">
     <div class="spinner-circle">
@@ -288,18 +352,24 @@
   </div>
 
   <header>
+    <link rel="icon" type="image/png" href="logo.png">
     <a href="index.html"><img src="WhatsApp Image 2025-09-28 at 3.04.34 AM (1).png" alt="Volver al inicio" style="width:60px;"></a>
     <div class="controls">
       <a href="index.html" class="boton">Inicio</a>
       <a href="historia.html" class="boton">Historia</a>
       <a href="lookbook.html" class="boton">Lookbook</a>
-      <a href="contacto.html" class="boton">Contacto</a>    </div>
+      <a href="contacto.html" class="boton">Contacto</a>
+      <button id="themeToggle" class="theme-toggle" aria-label="Alternar tema oscuro/claro">🌙</button>
+    </div>
   </header>
 
   <div class="editorial-content">
     <!-- Hero Section -->
     <section class="hero-section">
-      <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=1920&h=1080&fit=crop" alt="Zantori Editorial" class="hero-image">
+      <video id="heroVideo" class="hero-video" autoplay muted playsinline preload="auto">
+        <source src="5 Estilos Que Están Arrasando en 2025 - El Arte De Ser Hombre (720p, h264).mp4" type="video/mp4">
+        Tu navegador no soporta videos HTML5.
+      </video>
       <div class="hero-overlay"></div>
       <div class="hero-content">
         <h1 class="hero-title">Editorial ZANTORI</h1>
@@ -309,8 +379,7 @@
     </section>
 
     <!-- Section 1 -->
-    <section class="editorial-section">
-      <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1920&h=800&fit=crop" alt="Urban Style" class="section-image">
+    <section class="editorial-section section-elegant">
       <div class="section-content">
         <h2 class="section-title">La Esencia Urbana</h2>
         <p class="section-text">
@@ -327,14 +396,14 @@
     <!-- Gallery Section -->
     <section class="gallery-section">
       <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=800&h=600&fit=crop" alt="Minimal Style">
+        <img src="might persona2.png" alt="">
         <div class="gallery-overlay">
           <h3 class="gallery-title">Minimalismo Poderoso</h3>
           <p class="gallery-subtitle">Menos es más, pero con impacto</p>
         </div>
       </div>
       <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=600&fit=crop" alt="Urban Luxury">
+        <img src="agonyn colgada.png" alt="">
         <div class="gallery-overlay">
           <h3 class="gallery-title">Lujo Cotidiano</h3>
           <p class="gallery-subtitle">Elevando cada momento</p>
@@ -344,7 +413,6 @@
 
     <!-- Section 2 -->
     <section class="editorial-section">
-      <img src="https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?w=1920&h=800&fit=crop" alt="Authentic Style" class="section-image">
       <div class="section-content">
         <h2 class="section-title">Autenticidad Sin Límites</h2>
         <p class="section-text">
@@ -357,10 +425,8 @@
         </div>
       </div>
     </section>
-
-    <!-- Final Section -->
-    <section class="editorial-section">
-      <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1920&h=800&fit=crop" alt="Community" class="section-image">
+    <section class="editorial-section" style="display: flex; flex-direction: column; align-items: center;">
+      <img src="zantori comunidad.png" alt="Comunidad ZANTORI" class="section-image-large">
       <div class="section-content">
         <h2 class="section-title">Comunidad ZANTORI</h2>
         <p class="section-text">
@@ -397,6 +463,65 @@
         });
       });
     });
+
+    // Limitar la reproducción del video hero a 15 segundos y hacer bucle
+    (function() {
+      const vid = document.getElementById('heroVideo');
+      const LOOP_SECONDS = 30;
+      if (!vid) return;
+
+      // Si el archivo es más corto que LOOP_SECONDS, no hacer nada
+      vid.addEventListener('loadedmetadata', () => {
+        if (isNaN(vid.duration)) return;
+        if (vid.duration <= LOOP_SECONDS) return;
+        // Asegurar que empiece en 0
+        vid.currentTime = 0;
+        // En algunos navegadores autoplay puede requerir una promesa
+        vid.play().catch(()=>{});
+      });
+
+      // Cada vez que exceda LOOP_SECONDS, volver a 0 y reproducir
+      vid.addEventListener('timeupdate', () => {
+        if (vid.currentTime >= LOOP_SECONDS) {
+          vid.currentTime = 0;
+          vid.play().catch(()=>{});
+        }
+      });
+    })();
+
+    // Theme toggle: persist preference and respect system setting
+    (function() {
+      const root = document.documentElement;
+      const toggle = document.getElementById('themeToggle');
+      const storageKey = 'zantori-theme';
+
+      function applyTheme(theme) {
+        if (theme === 'dark') {
+          root.setAttribute('data-theme', 'dark');
+          if (toggle) toggle.textContent = '☀️';
+        } else {
+          root.removeAttribute('data-theme');
+          if (toggle) toggle.textContent = '🌙';
+        }
+      }
+
+      // Init: check localStorage, else prefers-color-scheme
+      const saved = localStorage.getItem(storageKey);
+      if (saved === 'dark' || (!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        applyTheme('dark');
+      } else {
+        applyTheme('light');
+      }
+
+      if (toggle) {
+        toggle.addEventListener('click', () => {
+          const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+          const newTheme = isDark ? 'light' : 'dark';
+          applyTheme(newTheme);
+          localStorage.setItem(storageKey, newTheme);
+        });
+      }
+    })();
   </script>
 </body>
 </html>

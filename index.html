@@ -6,6 +6,23 @@
   <title>ZANTORI — Minimal Luxury Oversize</title>
   <meta name="description" content="ZANTORI - Minimal luxury oversize clothing shop" />
   <style>
+    #download-app-btn {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  color: rgb(3, 3, 3);
+  text-decoration: none;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  padding: 14px 22px;
+  border-radius: 50px;
+  box-shadow: 0 4px 25px rgba(0,0,0,0.25);
+  border: 1px solid rgba(8, 8, 8, 0.2);
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
   #cookie-banner {
     position: fixed;
     bottom: 20px;
@@ -266,6 +283,7 @@
   }
   </style>
 </head>
+<link rel="icon" type="image/png" href="WhatsApp Image 2025-09-28 at 3.04.34 AM (2).png">
 <body>
   <!-- Preloader -->
   <div id="preloader">
@@ -279,11 +297,15 @@
       <div>
         <a href="index.html" class="boton">Inicio</a>
         <a href="categorias.html" class="boton">Categorías</a>
-        <a href="ofertas.html" class="boton">Ofertas</a>
         <a href="historia.html" class="boton">Historia</a>
         <a href="editorial.html" class="boton">Editorial</a>
         <a href="contacto.html" class="boton">Contacto</a>
         <a href="suscripcion.html" class="boton">Suscripcion</a>
+        <a href="https://www.mediafire.com/file/pqvyo6cc4thj5bt/zantori%255B1%255D.apk/file" 
+   target="_blank" 
+   id="download-app-btn">
+  📲 Descargar App
+</a>
       </div>
     </header>
 
@@ -304,14 +326,14 @@
       </div>
 
       <div class="card" onclick="window.location.href='Collection II.html'">
-        <div class="thumb"><img src="próximamente.png" alt="⚠️próximamente⚠️"></div>
-        <div class="title">⚠️próximamente⚠️</div>
+        <div class="thumb"><img src="próximamente.png" alt="próximamente"></div>
+        <div class="title">próximamente</div>
         <div class="small"></div>
       </div>
 
       <div class="card" onclick="window.location.href='index.html'">
-        <div class="thumb"><img src="próximamente.png" alt="⚠️próximamente⚠️"></div>
-        <div class="title">⚠️próximamente⚠️</div>
+        <div class="thumb"><img src="próximamente.png" alt="próximamente"></div>
+        <div class="title">próximamente</div>
         <div class="small"></div>
       </div>
     </section>
@@ -356,7 +378,7 @@
     {
       id: 'reborn',
       title: 'REBORN // The Awakening',
-      price: 60000,
+      price: 70000,
       desc: 'Camiseta oversize premium, corte relajado, acabado mate.',
       img: 'Reborn adelante.png',
       link: 'camisetas.html' // enlace general
@@ -364,17 +386,17 @@
     {
       id: 'darkflow',
       title: 'AGONY // Synthetic Pain',
-      price: 60000,
+      price: 70000,
       desc: 'Camiseta fluida, ideal para outfits urbanos y minimalistas.',
       img: 'agony adelante.png',
       link: 'camisetas.html'
     },
     {
-      id: 'collection2',
-      title: '⚠️próximamente⚠️',
-      price: 0,
+      id: 'collection II',
+      title: 'MIGHT // The Power Within',
+      price: 70000,
       desc: '',
-      img: 'próximamente.png',
+      img: 'might adelante.png',
       link: 'index.html' // ⚡ aquí lleva a su propia página
     }
   ];

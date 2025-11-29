@@ -90,25 +90,27 @@
 
   .boton {
     display: inline-block;
-    padding: 8px 16px;
-    background: var(--translucent-white);
+    padding: 10px 18px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05));
     backdrop-filter: blur(10px);
     color: var(--accent);
     text-decoration: none;
     border-radius: var(--radius);
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 600;
     margin-left: 12px;
     margin-right: 0;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    border: 1px solid var(--accent);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2), inset 0 1px 0 rgba(255,255,255,0.2);
+    border: 2px solid var(--accent);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
   }
   .boton:hover {
-    background: var(--translucent-black);
+    background: linear-gradient(135deg, var(--accent), rgba(212, 175, 55, 0.9));
     color: #fff;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(212, 175, 55, 0.5), inset 0 1px 0 rgba(255,255,255,0.3);
   }
     :root{
       --bg: #f5f2ee;
@@ -172,7 +174,8 @@
 }
     .thumb{height:300px;border-radius:10px;background:#f6f3f0;display:flex;align-items:center;justify-content:center;overflow:hidden}
     .thumb img{width:100%;height:100%;object-fit:cover}
-    .title{font-weight:700;font-size:16px}
+    .title{font-weight:700;font-size:16px;text-align:center}
+    .title.proximo{background:#1f1a17;color:#fff;padding:8px 12px;border-radius:6px;text-align:center}
     .meta{font-size:13px;color:var(--muted)}
     .price{font-weight:800;margin-top:6px}
     .row{display:flex;gap:8px;align-items:center}
@@ -337,10 +340,88 @@
 
     footer{margin-top:36px;padding:24px 0;color:var(--muted);text-align:center;font-size:14px}
 
+    /* Notificación Modal */
+    #notifyModal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.48);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 120;
+      padding: 16px;
+    }
+    #notifyModal.open {
+      display: flex;
+    }
+    .notify-content {
+      background: var(--card);
+      border-radius: 16px;
+      max-width: 500px;
+      width: 100%;
+      padding: 24px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+      text-align: center;
+    }
+    .notify-content h3 {
+      color: var(--accent);
+      margin-bottom: 12px;
+      font-size: 20px;
+    }
+    .notify-content p {
+      color: var(--muted);
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+    .notify-content input {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 15px;
+      margin-bottom: 12px;
+      box-sizing: border-box;
+    }
+    .notify-content input:focus {
+      border-color: var(--accent);
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(31,26,23,0.1);
+    }
+    .notify-buttons {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+    }
+    .notify-buttons button {
+      flex: 1;
+      padding: 12px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all 0.3s ease;
+    }
+    .notify-btn-send {
+      background: var(--accent);
+      color: #fff;
+    }
+    .notify-btn-send:hover {
+      opacity: 0.9;
+    }
+    .notify-btn-cancel {
+      background: #e0e0e0;
+      color: #333;
+    }
+    .notify-btn-cancel:hover {
+      background: #ccc;
+    }
+
     @media (max-width:900px){ .modal{grid-template-columns:1fr} .gallery-main{height:300px} .thumb{height:220px} }
   </style>
 </head>
 <body>
+  <link rel="icon" type="image/png" href="WhatsApp Image 2025-09-28 at 3.04.34 AM (2).png">
+
       <!-- Preloader -->
   <div id="preloader">
     <div class="spinner-circle">
@@ -359,7 +440,7 @@
     </header>
 
     <main>
-      <h2 style="text-align:center;margin:30px 0;font-weight:800;">Categorías ZANTORI</h2>
+      <h2 style="text-align:center;margin:30px 0;font-weight:800;color:#1f1a17;">Categorías ZANTORI</h2>
 
       <section class="grid">
         <div class="card" onclick="window.location.href='camisetas.html'">
@@ -368,21 +449,21 @@
           <div class="small">Colección premium con cortes amplios y acabados suaves.</div>
         </div>
 
-        <div class="card" onclick="window.location.href='index.html'">
+        <div class="card" onclick="openNotifyModal()">
           <div class="thumb"><img src="próximamente.png" alt=""></div>
-          <div class="title">⚠️Proximo⚠️</div>
+          <div class="title proximo">Notificarme</div>
           <div class="small"></div>
         </div>
 
-        <div class="card" onclick="window.location.href='index.html'">
+        <div class="card" onclick="openNotifyModal()">
           <div class="thumb"><img src="próximamente.png" alt=""></div>
-          <div class="title">⚠️Proximo⚠️</div>
+          <div class="title proximo">Notificarme</div>
           <div class="small"></div>
         </div>
 
-         <div class="card" onclick="window.location.href='index.html'">
+         <div class="card" onclick="openNotifyModal()">
           <div class="thumb"><img src="próximamente.png" alt=""></div>
-          <div class="title">⚠️Proximo⚠️</div>
+          <div class="title proximo">Notificarme</div>
           <div class="small"></div>
         </div>
       </section>
@@ -391,6 +472,24 @@
     <footer>
       © <span id="year"></span> ZANTORI · Minimal luxury streetwear
     </footer>
+  </div>
+
+  <!-- Modal de Notificación -->
+  <div id="notifyModal">
+    <div class="notify-content">
+      <!-- Form nativo como fallback a FormSubmit -->
+      <form id="notifyForm" action="https://formsubmit.co/ag6003583@gmail.com" method="POST" onsubmit="sendNotification(event)">
+        <h3>Notificarme de nuevas categorías</h3>
+        <p>Ingresa tu email para recibir notificaciones cuando lancemos nuevas colecciones</p>
+        <input type="email" id="notifyEmail" name="email" placeholder="tu@email.com" required />
+        <input type="hidden" name="_subject" value="Nuevo suscriptor ZANTORI">
+        <input type="hidden" name="_next" value="index.html">
+        <div class="notify-buttons">
+          <button type="submit" class="notify-btn-send">Notificarme</button>
+          <button type="button" class="notify-btn-cancel" onclick="closeNotifyModal()">Cancelar</button>
+        </div>
+      </form>
+    </div>
   </div>
 
   <script>
@@ -402,6 +501,93 @@
       document.getElementById("year").textContent = new Date().getFullYear();
     });
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Funciones de Notificación
+    function openNotifyModal() {
+      document.getElementById("notifyModal").classList.add("open");
+    }
+
+    function closeNotifyModal() {
+      document.getElementById("notifyModal").classList.remove("open");
+      document.getElementById("notifyEmail").value = "";
+    }
+
+    function sendNotification() {
+      const email = document.getElementById("notifyEmail").value.trim();
+
+      if (!email) {
+        alert("Por favor ingresa tu email");
+        return;
+      }
+
+      // Validar email básico
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        alert("Por favor ingresa un email válido");
+        return;
+      }
+
+      // Guardar en localStorage
+      let emails = JSON.parse(localStorage.getItem("notificaciones_zantori") || "[]");
+      if (!emails.includes(email)) {
+        emails.push(email);
+        localStorage.setItem("notificaciones_zantori", JSON.stringify(emails));
+      }
+
+      // Preparar datos en formato application/x-www-form-urlencoded
+      const params = new URLSearchParams();
+      params.append('email', email);
+      params.append('message', 'Nuevo suscriptor a ZANTORI');
+      params.append('_subject', 'Nuevo suscriptor ZANTORI');
+
+      // Desactivar botones y mostrar estado
+      const sendBtn = document.querySelector('.notify-btn-send');
+      const cancelBtn = document.querySelector('.notify-btn-cancel');
+      if (sendBtn) { sendBtn.disabled = true; sendBtn.textContent = 'Enviando...'; }
+      if (cancelBtn) cancelBtn.disabled = true;
+
+      // Usamos el endpoint /ajax para recibir JSON de respuesta
+      fetch('https://formsubmit.co/ajax/ag6003583@gmail.com', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: params.toString()
+      }).then(async res => {
+        console.log('FormSubmit raw response:', res);
+        let data;
+        try {
+          data = await res.json();
+          console.log('FormSubmit JSON response:', data);
+        } catch (e) {
+          data = await res.text();
+          console.log('FormSubmit text response:', data);
+        }
+
+        if (!res.ok) {
+          throw new Error('HTTP ' + res.status + ' - ' + JSON.stringify(data));
+        }
+
+        // Envío aceptado por FormSubmit
+        alert('Envío aceptado. Revisa tu correo (y la carpeta spam). Si es la primera vez, confirma el email de verificación de FormSubmit.');
+        closeNotifyModal();
+        setTimeout(() => { window.location.href = 'index.html'; }, 1000);
+      }).catch(err => {
+        console.error('FormSubmit error:', err);
+        // Mostrar mensaje útil al usuario
+        alert('Error al enviar: ' + (err.message || err) + '. Revisa la consola (F12 → Console) y la pestaña Network para detalles.');
+        closeNotifyModal();
+        setTimeout(() => { window.location.href = 'index.html'; }, 1000);
+      }).finally(() => {
+        if (sendBtn) { sendBtn.disabled = false; sendBtn.textContent = 'Notificarme'; }
+        if (cancelBtn) cancelBtn.disabled = false;
+      });
+    }
+
+    // Cerrar modal al hacer clic fuera
+    document.getElementById("notifyModal").addEventListener("click", (e) => {
+      if (e.target.id === "notifyModal") {
+        closeNotifyModal();
+      }
+    });
   </script>
 </body>
 </html>

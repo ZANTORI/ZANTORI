@@ -6,6 +6,23 @@
   <title>ZANTORI — Minimal Luxury Oversize</title>
   <meta name="description" content="ZANTORI - Minimal luxury oversize clothing shop" />
   <style>
+  #download-app-btn {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  color: rgb(3, 3, 3);
+  text-decoration: none;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  padding: 14px 22px;
+  border-radius: 50px;
+  box-shadow: 0 4px 25px rgba(0,0,0,0.25);
+  border: 1px solid rgba(8, 8, 8, 0.2);
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
   #cookie-banner {
     position: fixed;
     bottom: 20px;
@@ -328,6 +345,7 @@
   </style>
 </head>
 <body>
+<link rel="icon" type="image/png" href="WhatsApp Image 2025-09-28 at 3.04.34 AM (2).png">
 
     <!-- Preloader -->
 <div id="preloader">
@@ -354,6 +372,11 @@
                  <a href="contacto.html" class="boton">Contacto</a>
         <button class="cart-btn" id="openCart"> 🛒 <span class="cart-count" id="cartCount">0</span></button>
         <input class="search" id="search" placeholder="Buscar: camisetas, hoodies..." />
+                 <a href="https://www.mediafire.com/file/pqvyo6cc4thj5bt/zantori%255B1%255D.apk/file" 
+   target="_blank" 
+   id="download-app-btn">
+  📲 Descargar App
+</a>
       </div>
     </header>
 
@@ -501,7 +524,7 @@
         id:'p01',
         title:'REBORN // The Awakening',
         sku:'MC-BL-01',
-        price:60000,
+        price:70000,
         desc:'Camiseta oversize premium, algodón 200g, corte relajado y acabado mate.',
         variants:{
           'Blanca':{label:'Blanca',images:['reborn logo.png', 'Reborn doblada.png','Reborn adelante.png', 'Reborn atras.png', 'Reborn colgada.png', 'Reborn etiqueta.png']},
@@ -512,7 +535,7 @@
         id:'p02',
         title:'AGONY // Synthetic Pain',
         sku:'MC-BL-01',
-        price:60000,
+        price:70000,
         desc:'Camiseta oversize premium, algodón 200g, corte relajado y acabado mate.',
         variants:{
           'Blanca':{label:'Blanca',images:['agony logo.png', 'agony doblada.png','agony adelante.png', 'agony atras.png', 'agony colgada.png', 'agony etiqueta.png']},
@@ -524,7 +547,7 @@
         id:'p03',
         title:'Might Collection Tee',
         sku:'MC-BL-01',
-        price:60000,
+        price:70000,
         desc:'Camiseta oversize premium, algodón 200g, corte relajado y acabado mate.',
         variants:{
           'Blanca':{label:'Blanca',images:['might logo.png', 'might doblada.png','might adelante.png', 'might atras.png', 'might persona1.png', 'might persona2.png']},
@@ -535,46 +558,12 @@
         id:'p04',
         title:'Might Collection Tee',
         sku:'MC-BL-01',
-        price:60000,
+        price:70000,
         desc:'Camiseta oversize premium, algodón 200g, corte relajado y acabado mate.',
         variants:{
           'Blanca':{label:'Blanca',images:['reborn logo.png', 'Reborn doblada.png','Reborn adelante.png', 'Reborn atras.png', 'Reborn colgada.png', 'Reborn etiqueta.png', 'Reborn persona 1.png', 'Reborn persona 2.png', 'Reborn pareja.png']},
           'Negra':{label:'Blanca',images:['reborn logo.png', 'Reborn doblada.png','Reborn adelante.png', 'Reborn atras.png', 'Reborn colgada.png', 'Reborn etiqueta.png', 'Reborn persona 1.png', 'Reborn persona 2.png', 'Reborn pareja.png']},
 
-        },
-        sizes:['S','M','L']
-      },
-      {
-        id:'p05',
-        title:'Dark Oversize Hoodie',
-        sku:'DO-HD-02',
-        price:120000,
-        desc:'Hoodie oversize con forro interior suave, capucha y costuras reforzadas.',
-        variants:{
-          'Negra':{label:'Negra',images:[
-            'https://i.imgur.com/OrAxYvV.jpeg',
-            'https://i.imgur.com/9vQ1ZxH.jpeg'
-          ]},
-          'Bordo':{label:'Bordo',images:[
-            'https://i.imgur.com/7YlWb3K.jpeg'
-          ]}
-        },
-        sizes:['M','L','XL']
-      },
-      {
-        id:'p06',
-        title:'White Flow Long Tee',
-        sku:'WF-TS-03',
-        price:58000,
-        desc:'Long tee oversize con caída fluida, ideal para layering.',
-        variants:{
-          'Blanca':{label:'Blanca',images:[
-            'https://i.imgur.com/rPwFZab.jpeg',
-            'https://i.imgur.com/3Kq1o1L.jpeg'
-          ]},
-          'Gris':{label:'Gris',images:[
-            'https://i.imgur.com/0oX7s6k.jpeg'
-          ]}
         },
         sizes:['S','M','L']
       }
